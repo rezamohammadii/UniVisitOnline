@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VisitOnline.Database;
+using Microsoft.EntityFrameworkCore;
+using VisitOnline.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace VisitOnline
 {
@@ -23,7 +27,13 @@ namespace VisitOnline
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("DefualtConnection"));
+            });
+            services.AddTransient<IUser, UserService>();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,17 +51,24 @@ namespace VisitOnline
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseMvcWithDefaultRoute();
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                });
             });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }
