@@ -1,0 +1,6 @@
+
+/VisitOnline/obj/*
+/VisitOnline/bin/*
+*.vs
+/.vs
+
