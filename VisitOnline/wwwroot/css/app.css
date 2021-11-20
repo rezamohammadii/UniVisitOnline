@@ -70,12 +70,15 @@
 
 body {
   font-family: "sans";
-  background-image: url("../../../img/polygon-scatter-haikei.svg");
+  background-image: url("../img/polygon-scatter-haikei.svg");
   background-size: 100%;
   background-repeat: no-repeat; }
-
+option{
+    font-family:"sans"
+}
 .ismb {
-  font-family: "ismb"; }
+    font-family: "ismb";
+}
 
 [type="number"] {
   appearance: textfield; }

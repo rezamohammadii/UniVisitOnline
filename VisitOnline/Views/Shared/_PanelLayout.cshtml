@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VisitOnline</title>
+
+    <link rel="stylesheet" href="~/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/css/app.css" />
+</head>
+<body dir="rtl" class="bg-light">
+    <div class="panel">
+        <div class="">
+            <div class="row w-100 m-0">
+                <!-- start mobile -->
+                <div class="col-sm-12 d-md-none d-sm-block d-block p-2">
+                    <div class="card border-0 rounded-custom-2 shadow-sm p-0">
+                        <div class="row w-100 m-0">
+                            <div class="col-6 align-self-center text-start py-1 px-3">
+                                <a class="" href="/">
+                                    <img src="img/visitonline.png" width="150" alt="" class="bg-white p-2 sd rounded-custom-1">
+                                </a>
+                            </div>
+                            <div class="col-6 align-self-center text-end py-1 px-3">
+                                <span style="font-size:30px;cursor:pointer" onclick="openNav()">
+                                    <i class="bi bi-list d-flex justify-content-end"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="mySidenav" class="sidenav">
+                            <a href="javascript:void(0)" class="closebtn border-0 p-0" onclick="closeNav()">
+                                <i class="bi bi-x d-flex"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-speedometer2 me-2"></i>
+                                داشبورد
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-pen me-2"></i>
+                                تکمیل اطلاعات
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-menu-down me-2"></i>
+                                مشاهده ویزیت
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-chat-left-text me-2"></i>
+                                چت آنلاین
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-power me-2"></i>
+                                خروج
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end mobile -->
+                <!-- start desktop -->
+                <div class="col-sm-12 d-md-block d-sm-none d-none p-2">
+                    <div class="card border-0 rounded-custom-2 shadow-sm p-0">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-linavbar-light">
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="/">
+                                    <img src="img/visitonline.png" width="150" alt="" class="bg-white p-2 sd rounded-custom-1">
+                                </a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#navbarText" aria-controls="navbarText"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarText">
+                                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#"
+                                               id="navbarScrollingDropdown" role="button"
+                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-bell-fill"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="navbarScrollingDropdown">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end desktop -->
+                <div class="col-xl-3 col-lg-4 col-md-5 p-0">
+                    <div class="row w-100 m-0">
+                        <div class="col-sm-12 p-2">
+                            <div class="card border-0 rounded-custom-2 shadow-sm p-3">
+                                <div class="row w-100 m-0">
+                                    <div class="col-md-3 col-sm-2 col-2 align-self-center p-1">
+                                        <img src="img/doctor.png" alt="" class="w-100 rounded-circle">
+                                    </div>
+                                    <div class="col-md-9 col-sm-10 col-10 align-self-center p-1">
+                                        <p class="h5 ismb my-1">
+                                            نام و نام خانوادگی
+                                        </p>
+                                        <p class="h6 text-secondary my-1">
+                                            پزشک
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- start desktop -->
+                        <div class="col-sm-12 d-md-block d-sm-none d-none p-2">
+                            <div class="card border-0 rounded-custom-2 shadow-sm p-3">
+                                <ul class="p-0 m-0">
+                                    <li class="list-unstyled py-1">
+                                        <a href=""
+                                           class="btn btn-side-link rounded-0 position-relative active">
+                                            <i class="bi bi-speedometer2 me-2 d-flex h5 my-0"></i>
+                                            داشبورد
+                                            <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled py-1">
+                                        <a href="" class="btn btn-side-link rounded-0 position-relative">
+                                            <i class="bi bi-pen me-2 d-flex h5 my-0"></i>
+                                            تکمیل اطلاعات
+                                            <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled py-1">
+                                        <a href="" class="btn btn-side-link rounded-0 position-relative">
+                                            <i class="bi bi-menu-down me-2 d-flex h5 my-0"></i>
+                                            مشاهده ویزیت
+                                            <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled py-1">
+                                        <a href="" class="btn btn-side-link rounded-0 position-relative">
+                                            <i class="bi bi-chat-left-text me-2 d-flex h5 my-0"></i>
+                                            چت آنلاین
+                                            <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-unstyled py-1">
+                                        <a href="" class="btn btn-side-link rounded-0 position-relative">
+                                            <i class="bi bi-power me-2 d-flex h5 my-0"></i>
+                                            خروج
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end desktop -->
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-7 p-2">
+                    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+                        <div class="col-sm-12 p-2">
+                            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                                داشبورد
+                                <i class="bi bi-speedometer2"></i>
+                            </p>
+                            <hr class="my-2">
+                        </div>
+                        <div class="py-3">
+                            <div class="col-xxl-10 m-auto p-1">
+                                <div class="row w-100 m-0">
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            نام و نام خانوادگی :
+                                            <span class="text-dark fw-bolder">
+                                                نام و نام خانوادگی
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            شماره همراه :
+                                            <span class="text-dark fw-bolder">
+                                                ۰۹۱۲۳۴۵۶۷۸۹
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            کد ملی :
+                                            <span class="text-dark fw-bolder">
+                                                ۰۰۱۴۵۶۹۳۹۰
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            تخصص :
+                                            <span class="text-dark fw-bolder">
+                                                پزشک عمومی
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            شماره نظام پزشکی :
+                                            <span class="text-dark fw-bolder">
+                                                ۹۴۸۳۸۷۵۸۴
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                                            رمز عبور :
+                                            <span class="text-dark fw-bolder">
+                                                ۲۱۰۹۳۴
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 p-3 border">
+                                        <p class="h6 text-secondary m-0">
+                                            آدرس مطب :
+                                            <span class="text-dark fw-bolder">
+                                                تهران، سعادت آباد
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 p-3 border">
+                                        <p class="h6 text-secondary m-0">
+                                            آدرس داروخانه :
+                                            <span class="text-dark fw-bolder">
+                                                تهران، سعادت آباد
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 text-center p-3 border">
+                                        <a href=""
+                                           class="text-a fw-bolder d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-pen d-flex me-2"></i>
+                                            ویرایش اطلاعات
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

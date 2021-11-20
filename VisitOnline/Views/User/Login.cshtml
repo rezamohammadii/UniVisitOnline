@@ -2,77 +2,60 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "صفحه ورود";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
 
     <div class="auth d-flex align-items-center">
         <div class="container">
             <div class="row w-100 m-0">
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-8 mx-auto p-md-3 p-sm-2 p-1">
                     <div class="card shadow-lg rounded-0 border-0 p-4">
-                        <form action="" class="m-0">
+                       
+                        <form asp-action="Login" class="m-0">
                             <div class="row w-100 m-0">
                                 <div class="col-sm-12 p-1">
                                     <p class="h2 ismb text-white">
                                         ویزیت آنلاین
                                     </p>
                                     <p class="text-white fw-bolder">
-                                        ثبت نام کنید
+                                        وارد شوید
                                     </p>
                                 </div>
                                 <div class="col-sm-12 p-1">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control rounded-custom-2" id="nameInput" placeholder="نام و نام خانوادگی">
-                                        <label for="nameInput">
-                                            <i class="bi bi-person-circle"></i>
-                                            نام و نام خانوادگی
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="tel" class="form-control rounded-custom-2" id="nameInput" placeholder="شماره همراه">
-                                        <label for="nameInput">
+                                        <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2" id="mobile" placeholder="شماره همراه">
+                                        <label for="mobile" asp-for="Mobile">
                                             <i class="bi bi-phone"></i>
                                             شماره همراه
                                         </label>
+                                        <span asp-validation-for="Mobile" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 p-1">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control rounded-custom-2" id="nameInput" placeholder="رمز عبور">
-                                        <label for="nameInput">
+                                        <input type="password" asp-for="Password" class="form-control rounded-custom-2" id="pass" placeholder="رمز عبور">
+                                        <label for="pass" asp-for="Password">
                                             <i class="bi bi-shield-check"></i>
                                             رمز عبور
                                         </label>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="password" class="form-control rounded-custom-2" id="nameInput" placeholder="تکرار رمز عبور">
-                                        <label for="nameInput">
-                                            <i class="bi bi-shield-check"></i>
-                                            تکرار رمز عبور
-                                        </label>
-                                    </div>
+                                    <a href="" class="text-white">
+                                        رمز عبورم را فراموش کرده ام
+                                    </a>
                                 </div>
                                 <div class="col-sm-12 p-1">
-                                    <button type="submit" class="btn btn-lg btn-success w-100 shadow-sm rounded-custom-2">
-                                        ثبت نام
-                                    </button>
+                                    <input type="submit" class="btn btn-lg btn-success w-100 shadow-sm rounded-custom-2" value="ورود">
+
+
                                 </div>
                                 <div class="col-sm-12 p-1">
-                                    <button type="submit" class="btn btn-lg btn-outline-light w-100 shadow-sm rounded-custom-2">
-                                        قبلا ثبت نام کرده اید؟ وارد شوید
-                                    </button>
+                                    <a href="/user/register" class="btn btn-lg btn-outline-light w-100 shadow-sm rounded-custom-2">
+                                        قبلا ثبت نام نکرده اید؟ ثبت نام کنید
+                                    </a>
                                 </div>
                             </div>
                         </form>
@@ -81,7 +64,6 @@
             </div>
         </div>
     </div>
-    <hr />
     @*<div class="row">
             <div class="col-md-4">
                 <form asp-action="Login">
@@ -108,5 +90,4 @@
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
-</body>
-</html>
+

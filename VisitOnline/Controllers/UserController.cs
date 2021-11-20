@@ -47,11 +47,11 @@ namespace VisitOnline.Controllers
                 {
                     switch (checkExist.Role.Name)
                     {
-                        case "doctor":
+                        case "پزشک":
                            return RedirectToAction("DocDashboard", "Panel");
-                        case "sick":
+                        case "بیمار":
                             return RedirectToAction("SickDashboard", "Panel");
-                        case "drogStore":
+                        case "داروخانه":
                             return RedirectToAction("DrogStorDashboard", "Panel");
                             
                     }
@@ -87,13 +87,15 @@ namespace VisitOnline.Controllers
                     users.Password = hashPasword;
                     if (models.Whois == 0)
                     {
-                        users.RoleId = 3;
+                        users.RoleId = 1;
                     }
                     users.RoleId = models.Whois;
                     users.Mobile = models.Mobile;
 
                     context.Users.Add(users);
                     context.SaveChanges();
+                    ViewBag.OkRegister = true;
+                    return RedirectToAction(nameof(Login));
                 }
             }
             return View(models);
