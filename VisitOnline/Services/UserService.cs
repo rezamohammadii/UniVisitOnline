@@ -19,5 +19,15 @@ namespace VisitOnline.Services
         {
             return context.Roles.Max(i => i.Id);
         }
+
+        public Users GetUser(string username)
+        {
+            return context.Users.Where(x => x.Mobile == username).FirstOrDefault();
+        }
+
+        public string GetUserRoleName(string username)
+        {
+            return context.Users.Include(u => u.Role).FirstOrDefault(u => u.Mobile == username).Role.Name;
+        }
     }
 }

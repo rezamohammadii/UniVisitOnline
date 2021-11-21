@@ -9,6 +9,9 @@ using VisitOnline.Database;
 using VisitOnline.Database.Tabels;
 using Microsoft.EntityFrameworkCore;
 using VisitOnline.Services;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace VisitOnline.Controllers
 {
@@ -36,25 +39,80 @@ namespace VisitOnline.Controllers
             if (ModelState.IsValid)
             {
                 string hashpassword = CodeFactor.HashGenerator(models.Password);
-                var checkExist = context.Users.Include(x=>x.Role).FirstOrDefault(x => x.Mobile == models.Mobile && x.Password == hashpassword);
+                var user = context.Users.Include(x=>x.Role).FirstOrDefault(x => x.Mobile == models.Mobile && x.Password == hashpassword);
 
-                if (checkExist == null)
+                if (user == null)
                 {
                     ModelState.AddModelError("Mobile", "شماره موبایل وارد شده موجود نمی باشد! ثبت نام کنید ");
-                    
+
                 }
                 else
                 {
-                    switch (checkExist.Role.Name)
+                    if (user.Role.Name == "پزشک")
                     {
-                        case "پزشک":
-                           return RedirectToAction("DocDashboard", "Panel");
-                        case "بیمار":
-                            return RedirectToAction("SickDashboard", "Panel");
-                        case "داروخانه":
-                            return RedirectToAction("DrogStorDashboard", "Panel");
-                            
+                        var claim = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.NameIdentifier , user.Id.ToString()),
+                                new Claim(ClaimTypes.Name , user.Mobile)
+                            };
+                        var identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        var properties = new AuthenticationProperties()
+                        {
+                            IsPersistent = true
+                        };
+                        HttpContext.SignInAsync(principal, properties);
+                        return RedirectToAction("DocDashboard", "Panel");
                     }
+                    else if (user.Role.Name == "بیمار")
+                    {
+                        var claim = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.NameIdentifier , user.Id.ToString()),
+                                new Claim(ClaimTypes.Name , user.Mobile)
+                            };
+                        var identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        var properties = new AuthenticationProperties()
+                        {
+                            IsPersistent = true
+                        };
+                        HttpContext.SignInAsync(principal, properties);
+                        return RedirectToAction("SickDashboard", "Panel");
+                    }
+                    else if (user.Role.Name == "داروخانه")
+                    {
+                        var claim = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.NameIdentifier , user.Id.ToString()),
+                                new Claim(ClaimTypes.Name , user.Mobile)
+                            };
+                        var identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        var properties = new AuthenticationProperties()
+                        {
+                            IsPersistent = true
+                        };
+                        HttpContext.SignInAsync(principal, properties);
+                        return RedirectToAction("DrogStorDashboard", "Panel");
+                    }
+                    else
+                    {
+                        var claim = new List<Claim>()
+                            {
+                                new Claim(ClaimTypes.NameIdentifier , user.Id.ToString()),
+                                new Claim(ClaimTypes.Name , user.Mobile)
+                            };
+                        var identity = new ClaimsIdentity(claim, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        var properties = new AuthenticationProperties()
+                        {
+                            IsPersistent = true
+                        };
+                        HttpContext.SignInAsync(principal, properties);
+                        return RedirectToAction("AdminDashboard", "Panel");
+                    }
+                       
                 }
             }
             return View(models);

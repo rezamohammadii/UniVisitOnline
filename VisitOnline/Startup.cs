@@ -12,6 +12,7 @@ using VisitOnline.Database;
 using Microsoft.EntityFrameworkCore;
 using VisitOnline.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace VisitOnline
 {
@@ -27,6 +28,17 @@ namespace VisitOnline
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                opt.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(opt =>
+            {
+                opt.LoginPath = "/User/Login";
+                opt.LogoutPath = "/User/Logout";
+                opt.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<DatabaseContext>(options =>
             {
@@ -49,12 +61,11 @@ namespace VisitOnline
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
