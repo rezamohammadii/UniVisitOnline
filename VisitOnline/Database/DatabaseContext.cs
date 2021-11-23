@@ -16,6 +16,8 @@ namespace VisitOnline.Database
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Sick> Sicks { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
     }
 }

@@ -42,7 +42,7 @@ namespace VisitOnline
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseSqlite(Configuration.GetConnectionString("DefualtConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection"));
             });
             services.AddTransient<IUser, UserService>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
