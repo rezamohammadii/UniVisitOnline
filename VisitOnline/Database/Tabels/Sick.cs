@@ -10,7 +10,7 @@ namespace VisitOnline.Database.Tabels
     public class Sick
     {
         [Key]
-        public int Id { get; set; }
+        [ForeignKey("Users")]
         public int UserId { get; set; }
         public string province { get; set; }
         public string City { get; set; }

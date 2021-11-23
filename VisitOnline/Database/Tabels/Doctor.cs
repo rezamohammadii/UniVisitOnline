@@ -10,7 +10,8 @@ namespace VisitOnline.Database.Tabels
     public class Doctor
     {
         [Key]
-        public int Id { get; set; }
+        
+        [ForeignKey("Users")]
         public int UserId { get; set; }
         public string NameFamily { get; set; }
         public string AddressMatab { get; set; }
