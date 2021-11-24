@@ -123,7 +123,7 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Doctor", b =>
                 {
-                    b.HasOne("VisitOnline.Database.Tabels.Users", "Users")
+                    b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithOne("Doctors")
                         .HasForeignKey("VisitOnline.Database.Tabels.Doctor", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -132,7 +132,7 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Sick", b =>
                 {
-                    b.HasOne("VisitOnline.Database.Tabels.Users", "Users")
+                    b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithOne("Sicks")
                         .HasForeignKey("VisitOnline.Database.Tabels.Sick", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)

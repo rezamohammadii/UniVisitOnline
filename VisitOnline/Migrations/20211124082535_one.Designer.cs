@@ -9,8 +9,8 @@ using VisitOnline.Database;
 namespace VisitOnline.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211123143624_updat")]
-    partial class updat
+    [Migration("20211124082535_one")]
+    partial class one
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,7 +125,7 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Doctor", b =>
                 {
-                    b.HasOne("VisitOnline.Database.Tabels.Users", "Users")
+                    b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithOne("Doctors")
                         .HasForeignKey("VisitOnline.Database.Tabels.Doctor", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -134,7 +134,7 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Sick", b =>
                 {
-                    b.HasOne("VisitOnline.Database.Tabels.Users", "Users")
+                    b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithOne("Sicks")
                         .HasForeignKey("VisitOnline.Database.Tabels.Sick", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -36,6 +36,8 @@ namespace VisitOnline.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginModels models)
         {
+            
+           
             if (ModelState.IsValid)
             {
                 string hashpassword = CodeFactor.HashGenerator(models.Password);
@@ -132,6 +134,7 @@ namespace VisitOnline.Controllers
             if (ModelState.IsValid)
             {
                 var CheckExist = context.Users.Where(x => x.Mobile == models.Mobile).FirstOrDefault();
+               
                 if (CheckExist != null)
                 {
                     return RedirectToAction(nameof(Login));

@@ -9,8 +9,8 @@ namespace VisitOnline.Database.Tabels
 {
     public class Sick
     {
-        [Key]
-        [ForeignKey("Users")]
+
+        [Key,ForeignKey("User")]
         public int UserId { get; set; }
         public string province { get; set; }
         public string City { get; set; }
@@ -18,8 +18,8 @@ namespace VisitOnline.Database.Tabels
         public int Region { get; set; }
         public int Age { get; set; }
 
-
-        public virtual Users Users { get; set; }
+       
+        public virtual Users User { get; set; }
 
 
     }
