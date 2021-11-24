@@ -7,27 +7,19 @@ using VisitOnline.Database;
 using VisitOnline.Database.Tabels;
 namespace VisitOnline.Services
 {
-    public class UserService : IUser
+    public class SickService : ISick
     {
         private DatabaseContext context;
-        public UserService(DatabaseContext _context)
+        public SickService(DatabaseContext _context)
         {
             context = _context;
         }
 
-        public int GetMaxRole()
+        public Sick GetSick(string username)
         {
-            return context.Roles.Max(i => i.Id);
+            return context.Sicks.Where(x => x.Mobile == username).FirstOrDefault();
         }
 
-        public Users GetUser(string username)
-        {
-            return context.Users.Where(x => x.Mobile == username).FirstOrDefault();
-        }
-
-        public string GetUserRoleName(string username)
-        {
-            return context.Users.Include(u => u.Role).FirstOrDefault(u => u.Mobile == username).Role.Name;
-        }
+       
     }
 }

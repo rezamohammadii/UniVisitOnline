@@ -8,9 +8,7 @@ namespace VisitOnline.Services
 {
     public interface ISick
     {
-       
-
         
-        Users GetSick(string username);
+        Sick GetSick(string username);
     }
 }
