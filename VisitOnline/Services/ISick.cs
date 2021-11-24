@@ -6,11 +6,11 @@ using VisitOnline.Database.Tabels;
 
 namespace VisitOnline.Services
 {
-    public interface IUser
+    public interface ISick
     {
-        int GetMaxRole();
+       
 
-        string GetUserRoleName(string username);
-        Users GetUser(string username);
+        
+        Users GetSick(string username);
     }
 }

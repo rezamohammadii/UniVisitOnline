@@ -141,6 +141,7 @@ namespace VisitOnline.Controllers
                 }
                 else
                 {
+                    
                     string hashPasword = CodeFactor.HashGenerator(models.Password);
                     Users users = new Users();
 
@@ -149,11 +150,45 @@ namespace VisitOnline.Controllers
                     if (models.Whois == 0)
                     {
                         users.RoleId = 1;
+
                     }
                     users.RoleId = models.Whois;
                     users.Mobile = models.Mobile;
-
                     context.Users.Add(users);
+                    
+                    //if (models.Whois == 1)
+                    //{
+                    //    Sick sick = new Sick()
+                    //    {
+                    //        Address = null,
+                    //        Age = 0,
+                    //        City = null,
+                    //        province = null,
+                    //        Region = 0,
+                           
+
+                    //    };
+                    //    context.Sicks.Add(sick);
+                    //}
+
+                    //else if (models.Whois == 2)
+                    //{
+                    //    Doctor doctor = new Doctor()
+                    //    {
+                    //        AddressMatab = null,
+                    //        Description = null,
+                    //        MeliCode = 0,
+                    //        province = null,
+                    //        Rate = 0,
+                    //        SNP = 0,
+                    //        Takhasos = null,
+                    //        TelMatab = null,
+                            
+                    //    };
+                    //    context.Doctors.Add(doctor);
+                    //}
+                   
+                    
                     context.SaveChanges();
                     ViewBag.OkRegister = true;
                     return RedirectToAction(nameof(Login));

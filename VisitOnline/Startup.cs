@@ -44,7 +44,7 @@ namespace VisitOnline
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection"));
             });
-            services.AddTransient<IUser, UserService>();
+            services.AddTransient<IUser, SickService>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 

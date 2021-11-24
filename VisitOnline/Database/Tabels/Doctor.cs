@@ -10,9 +10,12 @@ namespace VisitOnline.Database.Tabels
     public class Doctor
     {
 
-        [Key,ForeignKey("User")]
-        public int UserId { get; set; }
+        [Key]
+        public int DoctorId { get; set; }
         public string NameFamily { get; set; }
+        public string Mobile { get; set; }
+        public string Password { get; set; }
+
         public string AddressMatab { get; set; }
         public string Takhasos { get; set; }
         public string TelMatab { get; set; }
@@ -22,6 +25,6 @@ namespace VisitOnline.Database.Tabels
         public int Rate { get; set; }
         public long SNP { get; set; }
         
-        public virtual Users User { get; set; }
+     
     }
 }
