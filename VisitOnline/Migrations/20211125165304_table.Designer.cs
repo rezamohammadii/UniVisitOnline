@@ -9,8 +9,8 @@ using VisitOnline.Database;
 namespace VisitOnline.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211124082535_one")]
-    partial class one
+    [Migration("20211125165304_table")]
+    partial class table
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,26 +22,28 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Doctor", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<int>("DoctorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AddressMatab")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Certificate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("MeliCode")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("NameFamily")
+                    b.Property<string>("MeliCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rate")
                         .HasColumnType("int");
 
-                    b.Property<long>("SNP")
-                        .HasColumnType("bigint");
+                    b.Property<string>("SNP")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Takhasos")
                         .HasColumnType("nvarchar(max)");
@@ -49,10 +51,15 @@ namespace VisitOnline.Migrations
                     b.Property<string>("TelMatab")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("province")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("DoctorId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Doctors");
                 });
@@ -74,8 +81,10 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Sick", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<int>("SickId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -89,12 +98,17 @@ namespace VisitOnline.Migrations
                     b.Property<int>("Region")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("province")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("SickId");
 
-                    b.ToTable("Sicks");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sick");
                 });
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Users", b =>
@@ -103,6 +117,9 @@ namespace VisitOnline.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Activate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
@@ -126,8 +143,8 @@ namespace VisitOnline.Migrations
             modelBuilder.Entity("VisitOnline.Database.Tabels.Doctor", b =>
                 {
                     b.HasOne("VisitOnline.Database.Tabels.Users", "User")
-                        .WithOne("Doctors")
-                        .HasForeignKey("VisitOnline.Database.Tabels.Doctor", "UserId")
+                        .WithMany("Doctor")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -135,8 +152,8 @@ namespace VisitOnline.Migrations
             modelBuilder.Entity("VisitOnline.Database.Tabels.Sick", b =>
                 {
                     b.HasOne("VisitOnline.Database.Tabels.Users", "User")
-                        .WithOne("Sicks")
-                        .HasForeignKey("VisitOnline.Database.Tabels.Sick", "UserId")
+                        .WithMany("Sicks")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

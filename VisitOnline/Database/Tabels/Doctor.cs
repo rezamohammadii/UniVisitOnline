@@ -12,19 +12,21 @@ namespace VisitOnline.Database.Tabels
 
         [Key]
         public int DoctorId { get; set; }
-        public string NameFamily { get; set; }
-        public string Mobile { get; set; }
-        public string Password { get; set; }
+        public int UserId { get; set; }
 
         public string AddressMatab { get; set; }
         public string Takhasos { get; set; }
         public string TelMatab { get; set; }
         public string province { get; set; }
         public string Description { get; set; }
-        public long MeliCode { get; set; }
+        public string MeliCode { get; set; }
         public int Rate { get; set; }
-        public long SNP { get; set; }
+        public string SNP { get; set; }
+        public string Certificate { get; set; }
         
-     
+
+        [ForeignKey("UserId")]
+        public virtual Users User { get; set; }
+
     }
 }

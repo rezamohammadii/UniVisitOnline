@@ -2,7 +2,7 @@
 
 namespace VisitOnline.Migrations
 {
-    public partial class one : Migration
+    public partial class table : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,8 @@ namespace VisitOnline.Migrations
                     RoleId = table.Column<int>(nullable: false),
                     NameFamily = table.Column<string>(nullable: true),
                     Mobile = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    Password = table.Column<string>(nullable: true),
+                    Activate = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,20 +46,22 @@ namespace VisitOnline.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
+                    DoctorId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(nullable: false),
-                    NameFamily = table.Column<string>(nullable: true),
                     AddressMatab = table.Column<string>(nullable: true),
                     Takhasos = table.Column<string>(nullable: true),
                     TelMatab = table.Column<string>(nullable: true),
                     province = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    MeliCode = table.Column<long>(nullable: false),
+                    MeliCode = table.Column<string>(nullable: true),
                     Rate = table.Column<int>(nullable: false),
-                    SNP = table.Column<long>(nullable: false)
+                    SNP = table.Column<string>(nullable: true),
+                    Certificate = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Doctors", x => x.UserId);
+                    table.PrimaryKey("PK_Doctors", x => x.DoctorId);
                     table.ForeignKey(
                         name: "FK_Doctors_Users_UserId",
                         column: x => x.UserId,
@@ -68,9 +71,11 @@ namespace VisitOnline.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sicks",
+                name: "Sick",
                 columns: table => new
                 {
+                    SickId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(nullable: false),
                     province = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
@@ -80,14 +85,24 @@ namespace VisitOnline.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sicks", x => x.UserId);
+                    table.PrimaryKey("PK_Sick", x => x.SickId);
                     table.ForeignKey(
-                        name: "FK_Sicks_Users_UserId",
+                        name: "FK_Sick_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doctors_UserId",
+                table: "Doctors",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sick_UserId",
+                table: "Sick",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -101,7 +116,7 @@ namespace VisitOnline.Migrations
                 name: "Doctors");
 
             migrationBuilder.DropTable(
-                name: "Sicks");
+                name: "Sick");
 
             migrationBuilder.DropTable(
                 name: "Users");

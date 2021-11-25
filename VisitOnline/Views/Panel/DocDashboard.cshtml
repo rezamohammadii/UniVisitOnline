@@ -1,4 +1,4 @@
-﻿@model VisitOnline.Database.Tabels.Users
+﻿@model VisitOnline.Models.DoctorViewModel
 @{
     ViewData["Title"] = "DocDashboard";
     Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
@@ -28,7 +28,7 @@
                         <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
                             شماره همراه :
                             <span class="text-dark fw-bolder">
-                                ۰۹۱۲۳۴۵۶۷۸۹
+                                @Model.Mobile
                             </span>
                         </p>
                     </div>
@@ -36,7 +36,7 @@
                         <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
                             کد ملی :
                             <span class="text-dark fw-bolder">
-                                ۰۰۱۴۵۶۹۳۹۰
+                                @Model.MeliCode
                             </span>
                         </p>
                     </div>
@@ -44,7 +44,7 @@
                         <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
                             تخصص :
                             <span class="text-dark fw-bolder">
-                                پزشک عمومی
+                               @Model.Takhasos
                             </span>
                         </p>
                     </div>
@@ -52,7 +52,7 @@
                         <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
                             شماره نظام پزشکی :
                             <span class="text-dark fw-bolder">
-                                ۹۴۸۳۸۷۵۸۴
+                                @Model.SNP
                             </span>
                         </p>
                     </div>
@@ -68,7 +68,7 @@
                         <p class="h6 text-secondary m-0">
                             آدرس مطب :
                             <span class="text-dark fw-bolder">
-                                تهران، سعادت آباد
+                                @Model.AddressMatab
                             </span>
                         </p>
                     </div>

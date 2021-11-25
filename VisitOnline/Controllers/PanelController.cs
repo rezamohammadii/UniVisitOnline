@@ -20,19 +20,52 @@ namespace VisitOnline.Controllers
         public IActionResult DocDashboard()
         {
             string currentuser = User.Identity.Name;
-            Users users = user.GetUser(currentuser);
+            Doctor users = user.GetDoctor(currentuser);
+            DoctorViewModel doctor = new DoctorViewModel()
+            {
+                Mobile = users.User.Mobile,
+                AddressMatab = users.AddressMatab,
+                Description = users.Description,
+                MeliCode = users.MeliCode,
+                NameFamily = users.User.NameFamily,
+                province = users.province,
+                Rate = users.Rate,
+                SNP = users.SNP,
+                Takhasos = users.Takhasos,
+                TelMatab = users.TelMatab
+            };
+
             
-            return View(users);
+            return View(doctor);
         }
 
         public IActionResult CompleteInformation()
         {
-            return View();
+            string currentuser = User.Identity.Name;
+            Doctor users = user.GetDoctor(currentuser);
+            DoctorViewModel doctor = new DoctorViewModel()
+            {
+                Mobile = users.User.Mobile,
+                AddressMatab = users.AddressMatab,
+                Description = users.Description,
+                MeliCode = users.MeliCode,
+                NameFamily = users.User.NameFamily,
+                province = users.province,
+                Rate = users.Rate,
+                SNP = users.SNP,
+                Takhasos = users.Takhasos,
+                TelMatab = users.TelMatab
+            };
+            return View(doctor);
         }
         [HttpPost]
-        public IActionResult CompleteInformation(SickviewModels models)
+        public IActionResult CompleteInformation(DoctorViewModel models)
         {
+            if (ModelState.IsValid)
+            {
+                user.UpdateDoctor(models);
 
+            }
             return View(models);
         }
     }

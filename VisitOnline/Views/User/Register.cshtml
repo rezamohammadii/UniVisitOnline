@@ -4,121 +4,131 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "صفحه ثبت نام";
 }
+@if (ViewBag.OkRegister)
+{
+    <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="alert alert-success text-center">
+            <h5 class="text-center">
+                ثبت نام با موفقیت انجام شد
+            </h5>
+        </div>
+    </div>
+}
 
-    <div class="auth d-flex align-items-center">
-        <div class="container">
-            <div class="row w-100 m-0">
-                <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-8 mx-auto p-md-3 p-sm-2 p-1">
-                    <div class="card shadow-lg rounded-0 border-0 p-4">
-                        
-                        <form asp-action="Register" class="m-0">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="row w-100 m-0">
-                                <div class="col-sm-12 p-1">
-                                    <p class="h2 ismb text-white">
-                                        ویزیت آنلاین
-                                    </p>
-                                    <p class="text-white fw-bolder">
-                                        ثبت نام کنید
-                                    </p>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="text" asp-for="NameFamily" class="form-control rounded-custom-2" id="nameFamily" placeholder="نام و نام خانوادگی">
-                                        <label for="nameInput" asp-for="NameFamily">
-                                            <i class="bi bi-person-circle"></i>
-                                            نام و نام خانوادگی
-                                        </label>
-                                        <span asp-validation-for="NameFamily" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2" id="mobile" placeholder="شماره همراه">
-                                        <label for="mobile" asp-for="Mobile">
-                                            <i class="bi bi-phone"></i>
-                                            شماره همراه
-                                        </label>
-                                        <span asp-validation-for="Mobile" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="password" asp-for="Password" class="form-control rounded-custom-2" id="pass" placeholder="رمز عبور">
-                                        <label for="pass" asp-for="Password">
-                                            <i class="bi bi-shield-check"></i>
-                                            رمز عبور
-                                        </label>
-                                        <span asp-validation-for="Password" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <input type="password" asp-for="ConfirmPassword" class="form-control rounded-custom-2" id="confpass" placeholder="تکرار رمز عبور">
-                                        <label for="confpass" asp-for="ConfirmPassword">
-                                            <i class="bi bi-shield-check"></i>
-                                            تکرار رمز عبور
-                                        </label>
-                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <div class="form-floating">
-                                        <select class="form-select rounded-custom-2" asp-for="Whois" aria-label="Default select example">
-                                            <option selected>لطفا وضعیت خود را انتخاب کنید</option>
-                                            <option value="1">بیمار</option>
-                                            <option value="2">پزشک</option>
-                                            <option value="3">داروخانه دار</option>
-                                        </select>
+<div class="auth d-flex align-items-center">
+    <div class="container">
+        <div class="row w-100 m-0">
+            <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-8 mx-auto p-md-3 p-sm-2 p-1">
+                <div class="card shadow-lg rounded-0 border-0 p-4">
 
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <input type="submit" class="btn btn-lg btn-success w-100 shadow-sm rounded-custom-2" value="ثبت نام">
-
-                                </div>
-                                <div class="col-sm-12 p-1">
-                                    <a href="/user/login" class="btn btn-lg btn-outline-light w-100 shadow-sm rounded-custom-2">
-                                        قبلا ثبت نام کرده اید؟ وارد شوید
-                                    </a>
+                    <form asp-action="Register" class="m-0">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row w-100 m-0">
+                            <div class="col-sm-12 p-1">
+                                <p class="h2 ismb text-white">
+                                    ویزیت آنلاین
+                                </p>
+                                <p class="text-white fw-bolder">
+                                    ثبت نام کنید
+                                </p>
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <div class="form-floating">
+                                    <input type="text" asp-for="NameFamily" class="form-control rounded-custom-2" id="nameFamily" placeholder="نام و نام خانوادگی">
+                                    <label for="nameInput" asp-for="NameFamily">
+                                        <i class="bi bi-person-circle"></i>
+                                        نام و نام خانوادگی
+                                    </label>
+                                    <span asp-validation-for="NameFamily" class="text-danger"></span>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-sm-12 p-1">
+                                <div class="form-floating">
+                                    <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2" id="mobile" placeholder="شماره همراه">
+                                    <label for="mobile" asp-for="Mobile">
+                                        <i class="bi bi-phone"></i>
+                                        شماره همراه
+                                    </label>
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <div class="form-floating">
+                                    <input type="password" asp-for="Password" class="form-control rounded-custom-2" id="pass" placeholder="رمز عبور">
+                                    <label for="pass" asp-for="Password">
+                                        <i class="bi bi-shield-check"></i>
+                                        رمز عبور
+                                    </label>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <div class="form-floating">
+                                    <input type="password" asp-for="ConfirmPassword" class="form-control rounded-custom-2" id="confpass" placeholder="تکرار رمز عبور">
+                                    <label for="confpass" asp-for="ConfirmPassword">
+                                        <i class="bi bi-shield-check"></i>
+                                        تکرار رمز عبور
+                                    </label>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <div class="form-floating">
+                                    <select class="form-select rounded-custom-2" asp-for="Whois" aria-label="Default select example">
+                                        <option selected>لطفا وضعیت خود را انتخاب کنید</option>
+                                        <option value="2">بیمار</option>
+                                        <option value="3">پزشک</option>
+                                        <option value="4">داروخانه دار</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <input type="submit" class="btn btn-lg btn-success w-100 shadow-sm rounded-custom-2" value="ثبت نام">
+
+                            </div>
+                            <div class="col-sm-12 p-1">
+                                <a href="/user/login" class="btn btn-lg btn-outline-light w-100 shadow-sm rounded-custom-2">
+                                    قبلا ثبت نام کرده اید؟ وارد شوید
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @*<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Mobile" class="control-label"></label>
-                <input asp-for="Mobile" class="form-control" />
-                <span asp-validation-for="Mobile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NameFamily" class="control-label"></label>
-                <input asp-for="NameFamily" class="form-control" />
-                <span asp-validation-for="NameFamily" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Whois" class="control-label"></label>
-                <input asp-for="Whois" class="form-control" />
-                <span asp-validation-for="Whois" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>*@
+        <div class="col-md-4">
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Mobile" class="control-label"></label>
+                    <input asp-for="Mobile" class="form-control" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NameFamily" class="control-label"></label>
+                    <input asp-for="NameFamily" class="form-control" />
+                    <span asp-validation-for="NameFamily" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Whois" class="control-label"></label>
+                    <input asp-for="Whois" class="form-control" />
+                    <span asp-validation-for="Whois" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>*@
 
 
 

@@ -44,7 +44,7 @@ namespace VisitOnline
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection"));
             });
-            services.AddTransient<IUser, SickService>();
+            services.AddTransient<IUser, UserService>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
@@ -67,19 +67,19 @@ namespace VisitOnline
             app.UseMvcWithDefaultRoute();
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
             //app.UseEndpoints(endpoints =>
             //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello World!");
+            //    });
             //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=User}/{action=Register}/{id?}");
+            });
         }
     }
 }

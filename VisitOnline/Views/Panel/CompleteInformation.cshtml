@@ -1,4 +1,4 @@
-﻿
+﻿@model VisitOnline.Models.DoctorViewModel
 @{
     ViewData["Title"] = "CompleteInformation";
     Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
@@ -15,7 +15,7 @@
         </div>
         <div class="py-3">
             <div class="col-xxl-10 m-auto p-1">
-                <form action="" class="m-0">
+                <form asp-action="CompleteInformation" class="m-0">
                     <div class="row w-100 m-0">
                         <div class="col-12 px-2 pb-4">
                             <div class="pro-photo">
@@ -35,7 +35,7 @@
                                 <label for="input1" class="form-label">
                                     نام و نام خانوادگی
                                 </label>
-                                <input type="text" class="form-control rounded-custom-2 text-start" id="input1" placeholder="نام و نام خانوادگی خود را بنویسید">
+                                <input type="text" asp-for="NameFamily" class="form-control rounded-custom-2 text-start" id="input1" value="@Model.NameFamily" placeholder="نام و نام خانوادگی خود را بنویسید">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
@@ -43,7 +43,7 @@
                                 <label for="input2" class="form-label">
                                     کد ملی
                                 </label>
-                                <input type="number" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
+                                <input type="number" asp-for="MeliCode" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
@@ -51,22 +51,22 @@
                                 <label for="input2" class="form-label">
                                     شماره همراه
                                 </label>
-                                <input type="tel" class="form-control rounded-custom-2 text-start" id="input12" placeholder="شماره همراه خود را بنویسید">
+                                <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
 
-                            <select class="form-select" size="10" aria-label="تخصص خود را وارد کنید">
+                            <select class="form-select" size="10" asp-for="Takhasos" aria-label="تخصص خود را وارد کنید">
                                 <option selected>تخصص</option>
-                                <option value="1">ارتوپد</option>
-                                <option value="2">قلب عروق</option>
-                                <option value="4">مغز اعصاب</option>
-                                <option value="5">بیماری های عفونی</option>
-                                <option value="6">پوست و مو</option>
-                                <option value="7">چشم</option>
-                                <option value="8">گوش و حلق و بینی</option>
-                                <option value="9">گوارش</option>
-                                <option value="10">تغذیه</option>
+                                <option value="ارتوپد">ارتوپد </option>
+                                <option value="قلب عروق">قلب عروق</option>
+                                <option value="مغز اعصاب">مغز اعصاب</option>
+                                <option value="بیماری های عفونی">بیماری های عفونی</option>
+                                <option value="پوست و مو">پوست و مو</option>
+                                <option value="چشم">چشم</option>
+                                <option value="گوش و حلق و بینی">گوش و حلق و بینی</option>
+                                <option value="گوارش">گوارش</option>
+                                <option value="تغذیه">تغذیه</option>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
@@ -74,7 +74,7 @@
                                 <label for="input2" class="form-label">
                                     شماره نظام پزشکی
                                 </label>
-                                <input type="number" class="form-control rounded-custom-2 text-start" id="input12" placeholder="تخصص خود را بنویسید">
+                                <input type="number" asp-for="SNP" class="form-control rounded-custom-2 text-start" id="input12" placeholder="تخصص خود را بنویسید">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
@@ -82,7 +82,7 @@
                                 <label for="input2" class="form-label">
                                     آپلود جواز پزشکی
                                 </label>
-                                <input type="file" class="form-control rounded-custom-2" id="inputGroupFile01">
+                                <input type="file" asp-for="province" class="form-control rounded-custom-2" id="inputGroupFile01">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2">

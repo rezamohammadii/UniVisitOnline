@@ -12,15 +12,16 @@ namespace VisitOnline.Database.Tabels
 
         [Key]
         public int SickId { get; set; }
-        public string NameFamily { get; set; }
-        public string Mobile { get; set; }
-        public string Password { get; set; }
+        public int UserId { get; set; }
 
         public string province { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
         public int Region { get; set; }
         public int Age { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual Users User { get; set; }
 
        
        

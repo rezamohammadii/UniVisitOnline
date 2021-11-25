@@ -123,6 +123,7 @@ namespace VisitOnline.Controllers
         // GET: UserController/Edit/5
         public IActionResult Register()
         {
+            ViewBag.OkRegister = false;
             return View();
         }
 
@@ -149,49 +150,54 @@ namespace VisitOnline.Controllers
                     users.Password = hashPasword;
                     if (models.Whois == 0)
                     {
-                        users.RoleId = 1;
+                        users.RoleId = 2;
 
                     }
                     users.RoleId = models.Whois;
                     users.Mobile = models.Mobile;
+                    users.Activate = "disable";
                     context.Users.Add(users);
-                    
-                    //if (models.Whois == 1)
-                    //{
-                    //    Sick sick = new Sick()
-                    //    {
-                    //        Address = null,
-                    //        Age = 0,
-                    //        City = null,
-                    //        province = null,
-                    //        Region = 0,
-                           
-
-                    //    };
-                    //    context.Sicks.Add(sick);
-                    //}
-
-                    //else if (models.Whois == 2)
-                    //{
-                    //    Doctor doctor = new Doctor()
-                    //    {
-                    //        AddressMatab = null,
-                    //        Description = null,
-                    //        MeliCode = 0,
-                    //        province = null,
-                    //        Rate = 0,
-                    //        SNP = 0,
-                    //        Takhasos = null,
-                    //        TelMatab = null,
-                            
-                    //    };
-                    //    context.Doctors.Add(doctor);
-                    //}
-                   
-                    
                     context.SaveChanges();
+
+                    if (models.Whois == 2)
+                    {
+                        Sick sick = new Sick()
+                        {
+                            Address = null,
+                            Age = 0,
+                            City = null,
+                            province = null,
+                            Region = 0,
+                            UserId = users.Id
+
+                        };
+                        context.Sick.Add(sick);
+                        context.SaveChanges();
+                    }
+
+                    else if (models.Whois == 3)
+                    {
+                        Doctor doctor = new Doctor()
+                        {
+                            AddressMatab = null,
+                            Description = null,
+                            MeliCode = null,
+                            province = null,
+                            Rate = 0,
+                            SNP = null,
+                            Takhasos = null,
+                            TelMatab = null,
+                            UserId = users.Id
+
+                        };
+                        context.Doctors.Add(doctor);
+                        context.SaveChanges();
+                    }
+
+
+                    
                     ViewBag.OkRegister = true;
-                    return RedirectToAction(nameof(Login));
+                  //  return RedirectToAction(nameof(Login));
                 }
             }
             return View(models);
