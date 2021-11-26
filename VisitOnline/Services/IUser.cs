@@ -17,5 +17,6 @@ namespace VisitOnline.Services
         void UpdateDoctor(DoctorViewModel models);
         string GetUserRoleName(string username);
         Doctor GetDoctor(string username);
+        string GetUserStatus(string username);
     }
 }

@@ -20,6 +20,24 @@ namespace VisitOnline.Controllers
         public IActionResult DocDashboard()
         {
             string currentuser = User.Identity.Name;
+            string status = user.GetUserStatus(currentuser);
+
+            switch (status)
+            {
+                case "disable":
+                    
+                    ViewBag.Status = "disable";
+                    break;
+                case "enable":
+                    ViewBag.Status = "enable";
+                    break;
+                case "waiting":
+                    ViewBag.Status = "waiting";
+                    break;
+            }
+          
+            
+            
             Doctor users = user.GetDoctor(currentuser);
             DoctorViewModel doctor = new DoctorViewModel()
             {
@@ -41,6 +59,7 @@ namespace VisitOnline.Controllers
 
         public IActionResult CompleteInformation()
         {
+            
             string currentuser = User.Identity.Name;
             Doctor users = user.GetDoctor(currentuser);
             DoctorViewModel doctor = new DoctorViewModel()

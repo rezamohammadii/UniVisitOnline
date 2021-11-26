@@ -33,6 +33,11 @@ namespace VisitOnline.Services
             return context.Users.Include(u => u.Role).FirstOrDefault(u => u.Mobile == username).Role.Name;
         }
 
+        public string GetUserStatus(string username)
+        {
+            return context.Users.FirstOrDefault(x => x.Mobile == username).Activate;
+        }
+
         public void UpdateDoctor(DoctorViewModel models)
         {
 

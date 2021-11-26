@@ -10,7 +10,7 @@ namespace VisitOnline.Models
     {
         [Display(Name = "نام و نام خانوادگی ")]
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
-        [MaxLength(30, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
+        [MaxLength(50, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(5, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]        
         public string NameFamily { get; set; }
 
@@ -23,7 +23,7 @@ namespace VisitOnline.Models
 
         [Display(Name = "آدرس مطب")]
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
-        [MaxLength(100, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
+        [MaxLength(250, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(5, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]     
         public string AddressMatab { get; set; }
 
@@ -33,7 +33,7 @@ namespace VisitOnline.Models
 
         [Display(Name = "تلفن مطب")]
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
-        [MaxLength(8, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
+        [MaxLength(11, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(5, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]
         [Phone(ErrorMessage = "فقط عدد می توانید وارد کنید")]
         public string TelMatab { get; set; }
