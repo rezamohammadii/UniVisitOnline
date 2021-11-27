@@ -42,10 +42,10 @@ namespace VisitOnline.Services
             return context.Users.FirstOrDefault(x => x.Mobile == username).Activate;
         }
 
-        public void UpdateDoctor(DoctorViewModel models)
+        public void UpdateDoctor(DoctorViewModel models, string username)
         {
 
-            Doctor doctor = GetDoctor(models.Mobile);
+            Doctor doctor = GetDoctor(username);
             doctor.AddressMatab = models.AddressMatab;
             doctor.Description = models.Description;
             doctor.MeliCode = models.MeliCode;
@@ -59,16 +59,16 @@ namespace VisitOnline.Services
             context.SaveChanges();
         }
 
-        public void UpdateSick(SickviewModels models)
+        public void UpdateSick(SickviewModels models, string username)
         {
-            Sick sick = GetSick(models.Mobile);
+            Sick sick = GetSick(username);
             sick.Address = models.Address;
             sick.Age = models.Age;
             sick.City = models.City;
             sick.province = models.province;
             sick.Region = models.Region;
             sick.User.NameFamily = models.NameFamily;
-            sick.User.Mobile = models.Mobile;
+           
             context.SaveChanges();
         }
     }

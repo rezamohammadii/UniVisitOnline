@@ -82,7 +82,8 @@ namespace VisitOnline.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.UpdateDoctor(models);
+                string currentuser = User.Identity.Name;
+                user.UpdateDoctor(models , currentuser);
 
             }
             return View(models);
@@ -128,14 +129,20 @@ namespace VisitOnline.Controllers
             return View(sick);
         }
         [HttpPost]
-        public IActionResult SickInformation(SickviewModels models)
+        public IActionResult SickInformation(SickviewModels model)
         {
             if (ModelState.IsValid)
             {
-                user.UpdateSick(models);
+                string currentuser = User.Identity.Name;
+                user.UpdateSick(model , currentuser);
 
             }
-            return View(models);
+            return View(model);
+        }
+
+        public IActionResult RequestVisit()
+        {
+            return View();
         }
 
     }

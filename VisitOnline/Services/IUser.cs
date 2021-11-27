@@ -14,13 +14,13 @@ namespace VisitOnline.Services
 
         int GetMaxRole();
 
-        void UpdateDoctor(DoctorViewModel models);
+        void UpdateDoctor(DoctorViewModel models  , string username);
         string GetUserRoleName(string username);
         Doctor GetDoctor(string username);
         string GetUserStatus(string username);
 
         Sick GetSick(string username);
 
-        void UpdateSick(SickviewModels models);
+        void UpdateSick(SickviewModels models, string username);
     }
 }

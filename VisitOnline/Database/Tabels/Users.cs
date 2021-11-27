@@ -19,6 +19,7 @@ namespace VisitOnline.Database.Tabels
 
         public virtual ICollection<Doctor> Doctor { get; set; }
         public virtual ICollection<Sick> Sicks { get; set; }
+       
 
         //public virtual Doctor Doctors { get; set; }
         //public virtual Sick Sicks { get; set; }

@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "RequestVisit";
+    Layout = "~/Views/Shared/_PanelSickLayout.cshtml";
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="col-sm-12 p-2">
+            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                ویزیت های دریافتی
+                <i class="bi bi-menu-down"></i>
+            </p>
+            <hr class="my-2">
+        </div>
+        <div class="py-3">
+            <div class="col-xxl-11 m-auto p-1">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">
+                                    #
+                                </th>
+                                <th class="text-center" scope="col">
+                                    عنوان
+                                </th>
+                                <th class="text-center" scope="col">
+                                    شماره ویزیت
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تاریخ
+                                </th>
+                                <th class="text-center" scope="col">
+                                    وضعیت
+                                </th>
+                                <th class="text-center" scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var item in Model)
+                                {
+
+                                }
+                                <th class="text-center" scope="row">
+                                    ۱
+                                </th>
+                                <td class="text-center text-secondary">
+                                    عنوان شماره یک
+                                </td>
+                                <td class="text-center text-secondary">
+                                    ۳۴۵۶۷۸
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <span dir="">
+                                        ۱۰ فروردین ۱۴۰۰
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-warning">
+                                        در انتظار پاسخ
+                                    </span>
+                                    <span class="badge bg-danger">
+                                        منتفی
+                                    </span>
+                                    <span class="badge bg-success">
+                                        پاسخ داده شد
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-sm btn-outline-success">
+                                        مشاهده
+                                    </a>
+                                </td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+			
