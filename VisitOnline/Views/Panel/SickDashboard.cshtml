@@ -1,0 +1,87 @@
+﻿@model VisitOnline.Models.SickviewModels
+@{
+    ViewData["Title"] = "داشبورد";
+    Layout = "~/Views/Shared/_PanelSickLayout.cshtml";
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="col-sm-12 p-2">
+            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                داشبورد
+                <i class="bi bi-speedometer2"></i>
+            </p>
+            <hr class="my-2">
+        </div>
+        <div class="py-3">
+            <div class="col-xxl-10 m-auto p-1">
+                <div class="row w-100 m-0">
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                            نام و نام خانوادگی :
+                            <span class="text-dark fw-bolder">
+                                @Model.NameFamily
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                            شماره همراه :
+                            <span class="text-dark fw-bolder">
+                                @Model.Mobile
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                           استان :
+                            <span class="text-dark fw-bolder">
+                                @Model.province
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                            شهر :
+                            <span class="text-dark fw-bolder">
+                                @Model.City
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                           سن :
+                            <span class="text-dark fw-bolder">
+                                @Model.Age
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-6 p-3 border">
+                        <p class="h6 text-secondary d-flex align-items-center justify-content-between m-0">
+                            منطقه:
+                            <span class="text-dark fw-bolder">
+                                @Model.Region
+                            </span>
+                        </p>
+                    </div>
+                 
+                    <div class="col-12 p-3 border">
+                        <p class="h6 text-secondary m-0">
+                            آدرس  :
+                            <span class="text-dark fw-bolder">
+                                @Model.Address
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-12 text-center p-3 border">
+                        <a href="/Panel/SickInformation"
+                           class="text-a fw-bolder d-flex align-items-center justify-content-center">
+                            <i class="bi bi-pen d-flex me-2"></i>
+                            ویرایش اطلاعات
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

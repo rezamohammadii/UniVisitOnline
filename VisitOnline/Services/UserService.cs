@@ -27,6 +27,10 @@ namespace VisitOnline.Services
             return context.Roles.Max(i => i.Id);
         }
 
+        public Sick GetSick(string username)
+        {
+            return context.Sick.Include(x => x.User).FirstOrDefault(s => s.User.Mobile == username);
+        }
 
         public string GetUserRoleName(string username)
         {
@@ -52,6 +56,19 @@ namespace VisitOnline.Services
             doctor.TelMatab = models.TelMatab;
             doctor.User.NameFamily = models.NameFamily;
             doctor.User.Activate = "waiting";
+            context.SaveChanges();
+        }
+
+        public void UpdateSick(SickviewModels models)
+        {
+            Sick sick = GetSick(models.Mobile);
+            sick.Address = models.Address;
+            sick.Age = models.Age;
+            sick.City = models.City;
+            sick.province = models.province;
+            sick.Region = models.Region;
+            sick.User.NameFamily = models.NameFamily;
+            sick.User.Mobile = models.Mobile;
             context.SaveChanges();
         }
     }

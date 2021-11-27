@@ -87,5 +87,56 @@ namespace VisitOnline.Controllers
             }
             return View(models);
         }
+
+        public IActionResult SickDashboard()
+        {
+            string currentuser = User.Identity.Name;
+           
+
+            Sick users = user.GetSick(currentuser);
+            SickviewModels bimar = new SickviewModels()
+            {
+                Mobile = users.User.Mobile,
+                NameFamily = users.User.NameFamily,
+                province = users.province,
+                Address = users.Address ,
+                Age = users.Age ,
+                City = users.City,
+                Region = users.Region
+            };
+
+
+            return View(bimar);
+        }
+
+        public IActionResult SickInformation()
+        {
+
+            string currentuser = User.Identity.Name;
+            Sick users = user.GetSick(currentuser);
+            SickviewModels sick = new SickviewModels()
+            {
+                Mobile = users.User.Mobile,
+                NameFamily = users.User.NameFamily,
+                province = users.province,
+                Address = users.Address,
+                Region = users.Region ,
+                City = users.City ,
+                Age =users.Age ,
+                
+            };
+            return View(sick);
+        }
+        [HttpPost]
+        public IActionResult SickInformation(SickviewModels models)
+        {
+            if (ModelState.IsValid)
+            {
+                user.UpdateSick(models);
+
+            }
+            return View(models);
+        }
+
     }
 }

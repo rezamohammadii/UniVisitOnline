@@ -134,71 +134,80 @@ namespace VisitOnline.Controllers
         {
             if (ModelState.IsValid)
             {
-                var CheckExist = context.Users.Where(x => x.Mobile == models.Mobile).FirstOrDefault();
-               
-                if (CheckExist != null)
+                try
                 {
-                    return RedirectToAction(nameof(Login));
+                    var CheckExist = context.Users.Where(x => x.Mobile == models.Mobile).FirstOrDefault();
+
+                    if (CheckExist != null)
+                    {
+                        return RedirectToAction(nameof(Login));
+                    }
+                    else
+                    {
+
+                        string hashPasword = CodeFactor.HashGenerator(models.Password);
+                        Users users = new Users();
+
+                        users.NameFamily = models.NameFamily;
+                        users.Password = hashPasword;
+                        if (models.Whois == 0)
+                        {
+                            users.RoleId = 2;
+
+                        }
+                        users.RoleId = models.Whois;
+                        users.Mobile = models.Mobile;
+                        users.Activate = "disable";
+                        context.Users.Add(users);
+                        context.SaveChanges();
+
+                        if (models.Whois == 2)
+                        {
+                            Sick sick = new Sick()
+                            {
+                                Address = null,
+                                Age = 0,
+                                City = null,
+                                province = null,
+                                Region = 0,
+                                UserId = users.Id
+
+                            };
+                            context.Sick.Add(sick);
+                            context.SaveChanges();
+                        }
+
+                        else if (models.Whois == 3)
+                        {
+                            Doctor doctor = new Doctor()
+                            {
+                                AddressMatab = null,
+                                Description = null,
+                                MeliCode = null,
+                                province = null,
+                                Rate = 0,
+                                SNP = null,
+                                Takhasos = null,
+                                TelMatab = null,
+                                UserId = users.Id
+
+                            };
+                            context.Doctors.Add(doctor);
+                            context.SaveChanges();
+                        }
+
+
+
+                        ViewBag.OkRegister = true;
+                        //  return RedirectToAction(nameof(Login));
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    
-                    string hashPasword = CodeFactor.HashGenerator(models.Password);
-                    Users users = new Users();
 
-                    users.NameFamily = models.NameFamily;
-                    users.Password = hashPasword;
-                    if (models.Whois == 0)
-                    {
-                        users.RoleId = 2;
-
-                    }
-                    users.RoleId = models.Whois;
-                    users.Mobile = models.Mobile;
-                    users.Activate = "disable";
-                    context.Users.Add(users);
-                    context.SaveChanges();
-
-                    if (models.Whois == 2)
-                    {
-                        Sick sick = new Sick()
-                        {
-                            Address = null,
-                            Age = 0,
-                            City = null,
-                            province = null,
-                            Region = 0,
-                            UserId = users.Id
-
-                        };
-                        context.Sick.Add(sick);
-                        context.SaveChanges();
-                    }
-
-                    else if (models.Whois == 3)
-                    {
-                        Doctor doctor = new Doctor()
-                        {
-                            AddressMatab = null,
-                            Description = null,
-                            MeliCode = null,
-                            province = null,
-                            Rate = 0,
-                            SNP = null,
-                            Takhasos = null,
-                            TelMatab = null,
-                            UserId = users.Id
-
-                        };
-                        context.Doctors.Add(doctor);
-                        context.SaveChanges();
-                    }
-
-
-                    
-                    ViewBag.OkRegister = true;
-                  //  return RedirectToAction(nameof(Login));
+                    Console.WriteLine(ex.Message);
                 }
+                
             }
             return View(models);
         }

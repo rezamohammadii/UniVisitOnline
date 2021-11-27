@@ -18,5 +18,9 @@ namespace VisitOnline.Services
         string GetUserRoleName(string username);
         Doctor GetDoctor(string username);
         string GetUserStatus(string username);
+
+        Sick GetSick(string username);
+
+        void UpdateSick(SickviewModels models);
     }
 }
