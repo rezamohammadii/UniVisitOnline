@@ -26,8 +26,5 @@ namespace VisitOnline.Database.Tabels
         public virtual ICollection<VisitRequest> VisitRequest { get; set; }
 
 
-
-
-
     }
 }

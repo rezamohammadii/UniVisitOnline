@@ -28,5 +28,6 @@ namespace VisitOnline.Database.Tabels
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }
 
+        public virtual ICollection<VisitRequest> VisitRequest { get; set; }
     }
 }

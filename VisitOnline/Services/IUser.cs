@@ -22,5 +22,13 @@ namespace VisitOnline.Services
         Sick GetSick(string username);
 
         void UpdateSick(SickviewModels models, string username);
+
+
+        List<VisitRequest> GetVisitList();
+
+        void AddRequestVisit(RequestVisitModel model);
+
+        List<Doctor> GetListDoctor(string category);
+
     }
 }

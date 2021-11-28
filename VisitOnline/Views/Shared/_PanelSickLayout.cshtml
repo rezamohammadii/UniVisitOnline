@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
-
+﻿@{ 
+    string user = User.Identity.Name;
+}
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -110,7 +112,7 @@
                                             نام و نام خانوادگی
                                         </p>
                                         <p class="h6 text-secondary my-1">
-                                            پنل بیمار
+                                           : @user پنل بیمار
                                         </p>
                                     </div>
                                 </div>

@@ -140,9 +140,29 @@ namespace VisitOnline.Controllers
             return View(model);
         }
 
+        public IActionResult SeeVisit()
+        {
+            List<VisitRequest> ListVisit = user.GetVisitList();
+            return View(ListVisit);
+        }
+
+        
         public IActionResult RequestVisit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult RequestVisit(RequestVisitModel model)
+        {
+
+            return View();
+        }
+
+        public List<Doctor> GetDoctor(string category)
+        {
+
+            return user.GetListDoctor(category); 
         }
 
     }

@@ -8,80 +8,213 @@
     <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
         <div class="col-sm-12 p-2">
             <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
-                ویزیت های دریافتی
-                <i class="bi bi-menu-down"></i>
+                ارسال درخواست ویزیت به پزشک
+                <i class="bi bi-pen"></i>
             </p>
             <hr class="my-2">
         </div>
         <div class="py-3">
-            <div class="col-xxl-11 m-auto p-1">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="text-center" scope="col">
-                                    #
-                                </th>
-                                <th class="text-center" scope="col">
-                                    عنوان
-                                </th>
-                                <th class="text-center" scope="col">
-                                    شماره ویزیت
-                                </th>
-                                <th class="text-center" scope="col">
-                                    تاریخ
-                                </th>
-                                <th class="text-center" scope="col">
-                                    وضعیت
-                                </th>
-                                <th class="text-center" scope="col">
-                                    عملیات
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                @foreach (var item in Model)
-                                {
-
-                                }
-                                <th class="text-center" scope="row">
-                                    ۱
-                                </th>
-                                <td class="text-center text-secondary">
-                                    عنوان شماره یک
-                                </td>
-                                <td class="text-center text-secondary">
-                                    ۳۴۵۶۷۸
-                                </td>
-                                <td class="text-center text-secondary">
-                                    <span dir="">
-                                        ۱۰ فروردین ۱۴۰۰
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning">
-                                        در انتظار پاسخ
-                                    </span>
-                                    <span class="badge bg-danger">
-                                        منتفی
-                                    </span>
-                                    <span class="badge bg-success">
-                                        پاسخ داده شد
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-sm btn-outline-success">
-                                        مشاهده
-                                    </a>
-                                </td>
-                            </tr>
-                          
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-xxl-10 m-auto p-1">
+                <form action="" class="m-0">
+                    <div class="row w-100 m-0">
+                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                            <div class="">
+                                <label for="input1" class="form-label">
+                                    عنوان بیماری
+                                </label>
+                                <input type="text" class="form-control rounded-custom-2 text-start" id="input1" placeholder="موضوع بیماری خود را بنویسید">
+                            </div>
+                        </div>
+                        <div class="col-12 p-2">
+                            <div class="">
+                                <label for="input2" class="form-label">
+                                    توضیحات در مورد بیماری
+                                </label>
+                                <textarea class="form-control rounded-custom-2" id="textarea1" rows="3" placeholder="توضیحات خود را در مورد بیماریتان را بنویسید"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                            <div class="">
+                                <label for="input2" class="form-label">
+                                    نوع بیماری
+                                </label>
+                                <select class="form-select rounded-custom-2"
+                                        aria-label="Default select example">
+                                    <option selected>
+                                        نوع بیماری خود را انتخاب کنید
+                                    </option>
+                                    <option value="1">نوع یک</option>
+                                    <option value="2">نوع دو</option>
+                                    <option value="3">نوع سه</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 p-2">
+                            <div class="bg-light rounded-custom-3 shadow-sm p-1">
+                                <div class="row w-100 m-0">
+                                    <div class="col-12 p-1">
+                                        <p class="h6 text-a my-2 px-2 ismb">
+                                            پزشک خود را انتخاب کنید :
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="select-dr">
+                                    <div class="row w-100 m-0">
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                                            <div class="radio-cs">
+                                                
+                                                    <div class="row w-100 m-0">
+                                                        <div class="col-2 align-self-center p-1">
+                                                            <img src="img/doctor.png"
+                                                                 alt=""
+                                                                 class="w-100 rounded-circle">
+                                                        </div>
+                                                        <div class="col-10 align-self-center p-1">
+                                                            <p class="h5 text-dark my-1">
+                                                                نام و نام خانوادگی
+                                                                پزشک یک
+                                                            </p>
+                                                            <p class="h6 text-secondary my-1">
+                                                                تخصص پزشک
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <input type="radio"
+                                                           checked="checked"
+                                                           name="radio">
+                                                    <span class="checkmark"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                                            <div class="radio-cs">
+                                               
+                                                    <div class="row w-100 m-0">
+                                                        <div class="col-2 align-self-center p-1">
+                                                            <img src="img/doctor.png"
+                                                                 alt=""
+                                                                 class="w-100 rounded-circle">
+                                                        </div>
+                                                        <div class="col-10 align-self-center p-1">
+                                                            <p class="h5 text-dark my-1">
+                                                                نام و نام خانوادگی
+                                                                پزشک یک
+                                                            </p>
+                                                            <p class="h6 text-secondary my-1">
+                                                                تخصص پزشک
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <input type="radio"
+                                                           checked="checked"
+                                                           name="radio">
+                                                    <span class="checkmark"></span>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                                            <div class="radio-cs">
+                                                      
+                                                    <div class="row w-100 m-0">
+                                                        <div class="col-2 align-self-center p-1">
+                                                            <img src="img/doctor.png"
+                                                                 alt=""
+                                                                 class="w-100 rounded-circle">
+                                                        </div>
+                                                        <div class="col-10 align-self-center p-1">
+                                                            <p class="h5 text-dark my-1">
+                                                                نام و نام خانوادگی
+                                                                پزشک یک
+                                                            </p>
+                                                            <p class="h6 text-secondary my-1">
+                                                                تخصص پزشک
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <input type="radio"
+                                                           checked="checked"
+                                                           name="radio">
+                                                    <span class="checkmark"></span>
+                                              
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                                            <div class="radio-cs">
+                                                
+                                                    <div class="row w-100 m-0">
+                                                        <div class="col-2 align-self-center p-1">
+                                                            <img src="img/doctor.png"
+                                                                 alt=""
+                                                                 class="w-100 rounded-circle">
+                                                        </div>
+                                                        <div class="col-10 align-self-center p-1">
+                                                            <p class="h5 text-dark my-1">
+                                                                نام و نام خانوادگی
+                                                                پزشک یک
+                                                            </p>
+                                                            <p class="h6 text-secondary my-1">
+                                                                تخصص پزشک
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <input type="radio"
+                                                           checked="checked"
+                                                           name="radio">
+                                                    <span class="checkmark"></span>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content shadow rounded-custom-3">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-12 p-1">
+                                        <p class="ismb my-3 h5 text-b text-center">
+                                            مبلغ ویزیت
+                                        </p>
+                                        <p class="ismb my-3 h4 text-a text-center">
+                                            ۵۰،۰۰۰ تومان
+                                        </p>
+                                        <p class="my-3 h6 text-danger text-center">
+                                            آیا مطمئن هستید؟
+                                        </p>
+                                    </div>
+                                    <div class="col-12 p-2">
+                                        <a href="" class="btn btn-success rounded-custom-2 w-100">
+                                            پرداخت و ارسال درخواست به پزشک
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 			
+@section Scripts 
+{
+
+<script>
+    $("select").change(function () {
+        var str = $(this).text();
+        $.ajax({
+            type: 'POST',
+            url: "/Panel/GetDoctor",
+            data: str, 
+
+        }).done(function (res) {
+            console.log(res)
+        })
+    })
+</script>
+}

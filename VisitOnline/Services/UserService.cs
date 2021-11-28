@@ -17,9 +17,22 @@ namespace VisitOnline.Services
             context = _context;
         }
 
+        public void AddRequestVisit(RequestVisitModel model)
+        {
+            VisitRequest visit = new VisitRequest();
+            
+        }
+
         public Doctor GetDoctor(string username)
         {
             return context.Doctors.Include(x => x.User).FirstOrDefault(u => u.User.Mobile == username);
+        }
+
+        public List<Doctor> GetListDoctor(string category)
+        {
+            List<Doctor> doctors = new List<Doctor>();
+            doctors = context.Doctors.Where(x => x.Takhasos == category).ToList();
+            return doctors;
         }
 
         public int GetMaxRole()
@@ -40,6 +53,14 @@ namespace VisitOnline.Services
         public string GetUserStatus(string username)
         {
             return context.Users.FirstOrDefault(x => x.Mobile == username).Activate;
+        }
+
+        public List<VisitRequest> GetVisitList()
+        {
+            List<VisitRequest> requests = new List<VisitRequest>();
+
+            requests = context.VisitRequests.ToList();
+            return requests;
         }
 
         public void UpdateDoctor(DoctorViewModel models, string username)
