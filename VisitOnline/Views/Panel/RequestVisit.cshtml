@@ -58,112 +58,37 @@
                                         </p>
                                     </div>
                                 </div>
+
                                 <div class="select-dr">
-                                    <div class="row w-100 m-0">
-                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                                  
+                                    @*<div class="row w-100 m-0">
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1 ">
                                             <div class="radio-cs">
                                                 
-                                                    <div class="row w-100 m-0">
-                                                        <div class="col-2 align-self-center p-1">
-                                                            <img src="img/doctor.png"
-                                                                 alt=""
-                                                                 class="w-100 rounded-circle">
-                                                        </div>
-                                                        <div class="col-10 align-self-center p-1">
-                                                            <p class="h5 text-dark my-1">
-                                                                نام و نام خانوادگی
-                                                                پزشک یک
-                                                            </p>
-                                                            <p class="h6 text-secondary my-1">
-                                                                تخصص پزشک
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <input type="radio"
-                                                           checked="checked"
-                                                           name="radio">
-                                                    <span class="checkmark"></span>
+                                            <div class="row w-100 m-0">
+                                                <div class="col-2 align-self-center p-1">
+                                                    <img src="img/doctor.png"
+                                                            alt=""
+                                                            class="w-100 rounded-circle">
+                                                </div>
+                                                <div class="col-10 align-self-center p-1">
+                                                    <p class="h5 text-dark my-1">
+                                                        نام و نام خانوادگی
+                                                        پزشک یک
+                                                    </p>
+                                                    <p class="h6 text-secondary my-1">
+                                                        تخصص پزشک
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <input type="radio"
+                                                    checked="checked"
+                                                    name="radio">
+                                            <span class="checkmark"></span>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                                            <div class="radio-cs">
-                                               
-                                                    <div class="row w-100 m-0">
-                                                        <div class="col-2 align-self-center p-1">
-                                                            <img src="img/doctor.png"
-                                                                 alt=""
-                                                                 class="w-100 rounded-circle">
-                                                        </div>
-                                                        <div class="col-10 align-self-center p-1">
-                                                            <p class="h5 text-dark my-1">
-                                                                نام و نام خانوادگی
-                                                                پزشک یک
-                                                            </p>
-                                                            <p class="h6 text-secondary my-1">
-                                                                تخصص پزشک
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <input type="radio"
-                                                           checked="checked"
-                                                           name="radio">
-                                                    <span class="checkmark"></span>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                                            <div class="radio-cs">
-                                                      
-                                                    <div class="row w-100 m-0">
-                                                        <div class="col-2 align-self-center p-1">
-                                                            <img src="img/doctor.png"
-                                                                 alt=""
-                                                                 class="w-100 rounded-circle">
-                                                        </div>
-                                                        <div class="col-10 align-self-center p-1">
-                                                            <p class="h5 text-dark my-1">
-                                                                نام و نام خانوادگی
-                                                                پزشک یک
-                                                            </p>
-                                                            <p class="h6 text-secondary my-1">
-                                                                تخصص پزشک
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <input type="radio"
-                                                           checked="checked"
-                                                           name="radio">
-                                                    <span class="checkmark"></span>
-                                              
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                                            <div class="radio-cs">
-                                                
-                                                    <div class="row w-100 m-0">
-                                                        <div class="col-2 align-self-center p-1">
-                                                            <img src="img/doctor.png"
-                                                                 alt=""
-                                                                 class="w-100 rounded-circle">
-                                                        </div>
-                                                        <div class="col-10 align-self-center p-1">
-                                                            <p class="h5 text-dark my-1">
-                                                                نام و نام خانوادگی
-                                                                پزشک یک
-                                                            </p>
-                                                            <p class="h6 text-secondary my-1">
-                                                                تخصص پزشک
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <input type="radio"
-                                                           checked="checked"
-                                                           name="radio">
-                                                    <span class="checkmark"></span>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
+                                      
+                                    </div>*@
                                 </div>
                             </div>
                         </div>
@@ -214,7 +139,12 @@
 
         }).done(function (res) {
             console.log(res)
+
+            $(".select-dr").append('<div class="row w-100 m-0"></div>').append(' <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1 "></div>').append(' <div class="radio-cs"></div>').
+                append(' <div class="row w-100 m-0"> <div class="col-2 align-self-center p-1"><img src="img/doctor.png" alt = ""class= "w-100 rounded-circle" ></div></div>  <div class="col-10 align-self-center p-1">< p class= "h5 text-dark my-1" >نام و نام خانوادگی پزشک </p > <p class="h6 text-secondary my-1"> تخصص پزشک </p></div ></div> <input type="radio"checked = "checked"name = "radio" > <span class="checkmark"></span>')
+               
         })
     })
 </script>
 }
+ 

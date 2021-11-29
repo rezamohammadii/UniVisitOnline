@@ -13,6 +13,7 @@ namespace VisitOnline.Database.Tabels
         [Key]
         public int DoctorId { get; set; }
         public int UserId { get; set; }
+        public int RequestId { get; set; }
 
         public string AddressMatab { get; set; }
         public string Takhasos { get; set; }
@@ -28,6 +29,7 @@ namespace VisitOnline.Database.Tabels
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }
 
-        public virtual ICollection<VisitRequest> VisitRequest { get; set; }
+        [ForeignKey("RequestId")]
+        public virtual VisitRequest VisitRequest { get; set; }
     }
 }

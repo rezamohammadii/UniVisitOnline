@@ -29,6 +29,8 @@
     <Compile Remove="Migrations\20211124182335_start.Designer.cs" />
     <Compile Remove="Migrations\20211124182714_t2.cs" />
     <Compile Remove="Migrations\20211124182714_t2.Designer.cs" />
+    <Compile Remove="Migrations\20211129105109_connecttotable.cs" />
+    <Compile Remove="Migrations\20211129105109_connecttotable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

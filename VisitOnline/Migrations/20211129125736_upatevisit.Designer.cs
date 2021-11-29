@@ -10,8 +10,8 @@ using VisitOnline.Database;
 namespace VisitOnline.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211127182759_AddVisitRequest")]
-    partial class AddVisitRequest
+    [Migration("20211129125736_upatevisit")]
+    partial class upatevisit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,9 @@ namespace VisitOnline.Migrations
                     b.Property<int>("Rate")
                         .HasColumnType("int");
 
+                    b.Property<int>("RequestId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SNP")
                         .HasColumnType("nvarchar(max)");
 
@@ -59,6 +62,8 @@ namespace VisitOnline.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DoctorId");
+
+                    b.HasIndex("RequestId");
 
                     b.HasIndex("UserId");
 
@@ -99,6 +104,9 @@ namespace VisitOnline.Migrations
                     b.Property<int>("Region")
                         .HasColumnType("int");
 
+                    b.Property<int>("RequestId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -106,6 +114,8 @@ namespace VisitOnline.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SickId");
+
+                    b.HasIndex("RequestId");
 
                     b.HasIndex("UserId");
 
@@ -154,9 +164,6 @@ namespace VisitOnline.Migrations
                     b.Property<int>("NumberNoskhe")
                         .HasColumnType("int");
 
-                    b.Property<int>("SickId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
@@ -165,13 +172,17 @@ namespace VisitOnline.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SickId");
-
                     b.ToTable("VisitRequests");
                 });
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Doctor", b =>
                 {
+                    b.HasOne("VisitOnline.Database.Tabels.VisitRequest", "VisitRequest")
+                        .WithMany("Doctor")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithMany("Doctor")
                         .HasForeignKey("UserId")
@@ -181,6 +192,12 @@ namespace VisitOnline.Migrations
 
             modelBuilder.Entity("VisitOnline.Database.Tabels.Sick", b =>
                 {
+                    b.HasOne("VisitOnline.Database.Tabels.VisitRequest", "VisitRequest")
+                        .WithMany("Sick")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VisitOnline.Database.Tabels.Users", "User")
                         .WithMany("Sicks")
                         .HasForeignKey("UserId")
@@ -193,15 +210,6 @@ namespace VisitOnline.Migrations
                     b.HasOne("VisitOnline.Database.Tabels.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("VisitOnline.Database.Tabels.VisitRequest", b =>
-                {
-                    b.HasOne("VisitOnline.Database.Tabels.Sick", "Sick")
-                        .WithMany("VisitRequest")
-                        .HasForeignKey("SickId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
