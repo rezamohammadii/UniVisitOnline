@@ -11,12 +11,15 @@ namespace VisitOnline.Database.Tabels
     {
         [Key]
         public int Id { get; set; }
+        public int DoctorId { get; set; }
+        public int SickId { get; set; }
         public string Title { get; set; }
         public int NumberNoskhe { get; set; }
         public string Status { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+        public Sick Sick { get; set; }
+        public Doctor Doctor { get; set; }
 
-        public virtual ICollection<Doctor> Doctors { get; set; }
-        public virtual ICollection<Sick> Sick { get; set; }
+       
     }
 }

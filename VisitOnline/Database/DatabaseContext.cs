@@ -18,6 +18,9 @@ namespace VisitOnline.Database
         public DbSet<Sick> Sick { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<VisitRequest> VisitRequests { get; set; }
+        public DbSet<DrogStore> DrogStores { get; set; }
+        public DbSet<DrogRequset> DrogRequsets { get; set; }
+       
 
     }
 }

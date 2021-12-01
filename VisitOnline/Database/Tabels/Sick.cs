@@ -14,7 +14,7 @@ namespace VisitOnline.Database.Tabels
         public int SickId { get; set; }
         public int UserId { get; set; }
         public int RequestId { get; set; }
-
+         
         public string province { get; set; }
         public string City { get; set; }
         public string Address { get; set; }

@@ -181,16 +181,10 @@ namespace VisitOnline.Controllers
                         {
                             Doctor doctor = new Doctor()
                             {
-                                AddressMatab = null,
-                                Description = null,
-                                MeliCode = null,
-                                province = null,
                                 Rate = 0,
-                                SNP = null,
-                                Takhasos = null,
-                                TelMatab = null,
-                                UserId = users.Id
-
+                                UserId = users.Id , 
+                                RequestId = 0
+                                
                             };
                             context.Doctors.Add(doctor);
                             context.SaveChanges();
