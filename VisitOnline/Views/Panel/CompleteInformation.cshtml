@@ -46,7 +46,7 @@
                                 <label for="input2" class="form-label" asp-for="MeliCode">
                                     کد ملی
                                 </label>
-                                <input type="number" asp-for="MeliCode" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
+                                <input type="text" asp-for="MeliCode" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
                                 <span asp-validation-for="MeliCode" class="text-danger"></span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                 <label for="input2" class="form-label" asp-for="Mobile">
                                     شماره همراه
                                 </label>
-                                <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" disabled>
+                                <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" value="@Model.Mobile" disabled>
                                 <span asp-validation-for="Mobile" class="text-danger"></span>
                             </div>
                         </div>
@@ -91,15 +91,15 @@
 
                             <select class="form-select form-select-sm" asp-for="Takhasos" aria-label=".form-select-sm example">
                                 <option selected>تخصص</option>
-                                <option value="ارتوپد">ارتوپد </option>
-                                <option value="قلب عروق">قلب عروق</option>
-                                <option value="مغز اعصاب">مغز اعصاب</option>
-                                <option value="بیماری های عفونی">بیماری های عفونی</option>
-                                <option value="پوست و مو">پوست و مو</option>
-                                <option value="چشم">چشم</option>
-                                <option value="گوش و حلق و بینی">گوش و حلق و بینی</option>
-                                <option value="گوارش">گوارش</option>
-                                <option value="تغذیه">تغذیه</option>
+                                <option value="1">ارتوپد </option>
+                                <option value="2">قلب عروق</option>
+                                <option value="3">مغز اعصاب</option>
+                                <option value="4">بیماری های عفونی</option>
+                                <option value="5">پوست و مو</option>
+                                <option value="6">چشم</option>
+                                <option value="7">گوش و حلق و بینی</option>
+                                <option value="8">گوارش</option>
+                                <option value="9">تغذیه</option>
                             </select>
                             <span asp-validation-for="Takhasos" class="text-danger"></span>
                         </div>

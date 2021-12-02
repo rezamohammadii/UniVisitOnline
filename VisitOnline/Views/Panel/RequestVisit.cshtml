@@ -1,7 +1,10 @@
-﻿
+﻿@model VisitOnline.Models.RequestVisitModel
+@using VisitOnline.Services
+@inject PanelLayoutScope scope
 @{
     ViewData["Title"] = "RequestVisit";
     Layout = "~/Views/Shared/_PanelSickLayout.cshtml";
+    string NoshkheNumber = scope.RandomCodeNoskhe();
 }
 
 <div class="col-xl-9 col-lg-8 col-md-7 p-2">
@@ -15,37 +18,53 @@
         </div>
         <div class="py-3">
             <div class="col-xxl-10 m-auto p-1">
-                <form action="" class="m-0">
+                <form asp-action="RequestVisit" class="m-0">
                     <div class="row w-100 m-0">
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
                             <div class="">
-                                <label for="input1" class="form-label">
+                                <label id="numberNoskhe" for="input1" class="form-label">
+                                    شماره نسخه : <span id="nn">@NoshkheNumber</span>
+                                </label>
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                            <div class="">
+                                <label asp-for="Title" for="input1" class="form-label">
                                     عنوان بیماری
                                 </label>
-                                <input type="text" class="form-control rounded-custom-2 text-start" id="input1" placeholder="موضوع بیماری خود را بنویسید">
+                                <input type="text" asp-for="Title" class="form-control rounded-custom-2 text-start" id="input1" placeholder="موضوع بیماری خود را بنویسید">
+                                <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-12 p-2">
                             <div class="">
-                                <label for="input2" class="form-label">
+                                <label asp-for="Description" for="input2" class="form-label">
                                     توضیحات در مورد بیماری
                                 </label>
-                                <textarea class="form-control rounded-custom-2" id="textarea1" rows="3" placeholder="توضیحات خود را در مورد بیماریتان را بنویسید"></textarea>
+                                <textarea asp-for="Description" class="form-control rounded-custom-2" id="textarea1" rows="3" placeholder="توضیحات خود را در مورد بیماریتان را بنویسید"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
                             <div class="">
-                                <label for="input2" class="form-label">
+                                <label asp-for="SickType" for="input2" class="form-label">
                                     نوع بیماری
                                 </label>
-                                <select class="form-select rounded-custom-2"
+                                <select asp-for="SickType" class="form-select rounded-custom-2"
                                         aria-label="Default select example">
                                     <option selected>
                                         نوع بیماری خود را انتخاب کنید
                                     </option>
-                                    <option value="1">نوع یک</option>
-                                    <option value="2">نوع دو</option>
-                                    <option value="3">نوع سه</option>
+                                    <option value="1">ارتوپد </option>
+                                    <option value="2">قلب عروق</option>
+                                    <option value="3">مغز اعصاب</option>
+                                    <option value="4">بیماری های عفونی</option>
+                                    <option value="5">پوست و مو</option>
+                                    <option value="6">چشم</option>
+                                    <option value="7">گوش و حلق و بینی</option>
+                                    <option value="8">گوارش</option>
+                                    <option value="9">تغذیه</option>
                                 </select>
                             </div>
                         </div>
@@ -60,66 +79,72 @@
                                 </div>
 
                                 <div class="select-dr">
-                                  
-                                    @*<div class="row w-100 m-0">
-                                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1 ">
-                                            <div class="radio-cs">
-                                                
-                                            <div class="row w-100 m-0">
-                                                <div class="col-2 align-self-center p-1">
-                                                    <img src="img/doctor.png"
-                                                            alt=""
-                                                            class="w-100 rounded-circle">
-                                                </div>
-                                                <div class="col-10 align-self-center p-1">
-                                                    <p class="h5 text-dark my-1">
-                                                        نام و نام خانوادگی
-                                                        پزشک یک
-                                                    </p>
-                                                    <p class="h6 text-secondary my-1">
-                                                        تخصص پزشک
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <input type="radio"
-                                                    checked="checked"
-                                                    name="radio">
-                                            <span class="checkmark"></span>
-                                            </div>
-                                        </div>
-                                      
-                                    </div>*@
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" scope="col">
+                                                        #
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        نام پزشک
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        تخصص
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        تلفن مطب
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        آدرس
+                                                    </th>
+                                                    <th class="text-center" scope="col">
+                                                        امتیاز
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr id="forTd">
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content shadow rounded-custom-3">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-12 p-1">
-                                        <p class="ismb my-3 h5 text-b text-center">
-                                            مبلغ ویزیت
-                                        </p>
-                                        <p class="ismb my-3 h4 text-a text-center">
-                                            ۵۰،۰۰۰ تومان
-                                        </p>
-                                        <p class="my-3 h6 text-danger text-center">
-                                            آیا مطمئن هستید؟
-                                        </p>
-                                    </div>
-                                    <div class="col-12 p-2">
-                                        <a href="" class="btn btn-success rounded-custom-2 w-100">
-                                            پرداخت و ارسال درخواست به پزشک
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                    <button type="button" class="btn btn-success w-100 rounded-custom-2" onclick="PostData()">ارسال درخواست</button>
+                    @*<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content shadow rounded-custom-3">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12 p-1">
+                            <p class="ismb my-3 h5 text-b text-center">
+                                مبلغ ویزیت
+                            </p>
+                            <p class="ismb my-3 h4 text-a text-center">
+                                ۵۰،۰۰۰ تومان
+                            </p>
+                            <p class="my-3 h6 text-danger text-center">
+                                آیا مطمئن هستید؟
+                            </p>
+                        </div>
+                        <div class="col-12 p-2">
+                            <a href="" class="btn btn-success rounded-custom-2 w-100">
+                                پرداخت و ارسال درخواست به پزشک
+                            </a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>*@
                 </form>
             </div>
         </div>
@@ -130,21 +155,68 @@
 {
 
 <script>
+    var list = [];
+    var closestTr = ""
+    var idSelectBox= ""
     $("select").change(function () {
-        var str = $(this).text();
+         idSelectBox = $(this).find(":selected").val();
+       
+        
         $.ajax({
-            type: 'POST',
-            url: "/Panel/GetDoctor",
-            data: str, 
+            type: 'GET',
+            url: "/Panel/GetDoctor/" + idSelectBox,
+            data: {} , 
 
         }).done(function (res) {
-            console.log(res)
 
-            $(".select-dr").append('<div class="row w-100 m-0"></div>').append(' <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1 "></div>').append(' <div class="radio-cs"></div>').
-                append(' <div class="row w-100 m-0"> <div class="col-2 align-self-center p-1"><img src="img/doctor.png" alt = ""class= "w-100 rounded-circle" ></div></div>  <div class="col-10 align-self-center p-1">< p class= "h5 text-dark my-1" >نام و نام خانوادگی پزشک </p > <p class="h6 text-secondary my-1"> تخصص پزشک </p></div ></div> <input type="radio"checked = "checked"name = "radio" > <span class="checkmark"></span>')
-               
+            list.push(res);
+            console.log(list)
+            list.forEach(function (item) {
+                
+                for (var i = 1; i <= item.length; i++) {
+                    $('#forTd').append('<th id="' + item[i - 1].doctorId + ' " class="text - center" name="ac" scope="row"><input asp-for="SelectDoctor" class="form-check-input" type="checkbox" value="" id="checkbox1" /></th > ');
+                    $('#forTd').append(' <td class="text-center text-secondary">' + item[i-1].nameFamily + '</td > ')
+                    $('#forTd').append(' <td class="text-center text-secondary">' + item[i-1].takhasos + '</td > ')
+                    $('#forTd').append(' <td class="text-center text-secondary">' + item[i-1].telMatab + '</td > ')
+                    $('#forTd').append(' <td class="text-center text-secondary">' + item[i-1].addressMatab + '</td > ')
+                    $('#forTd').append(' <td class="text-center text-secondary">' + item[i - 1].rate + '</td > ')
+
+                 $("#checkbox1").click(function(){
+                  closestTr  = $(':checkbox:checked').closest('th').attr('id');
+                    alert(closestTr);
+                });
+                }
+                
+          
+            })
+            
+
         })
-    })
+
+      
+    });
+       
+
+    function PostData() {
+        event.preventDefault();
+        var desc = $("#textarea1").val();
+        var nNoskhe = $("#nn").text();
+        var title = $("#input1").val();
+        var jsondata = {
+            "Title": title, "NumberNoskhe": nNoskhe, "Status": desc, "SickType": idSelectBox, "SelectDoctor": closestTr
+        }
+        console.log(jsondata)
+
+        $.ajax({
+            type: 'POST',
+            url: "/Panel/RequestVisit",
+            data: jsondata,
+        }).done(function (res) {
+
+        })
+    }
+  
 </script>
+
 }
  

@@ -15,7 +15,7 @@ namespace VisitOnline.Models
         public string NameFamily { get; set; }
 
         [Display(Name = "شماره موبایل")]
-        [Required(ErrorMessage = "نباید بدون مقدار باشد")]
+        
         [MaxLength(11, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(11, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]
         [Phone(ErrorMessage = "فقط عدد می توانید وارد کنید")]
@@ -38,7 +38,7 @@ namespace VisitOnline.Models
         [Phone(ErrorMessage = "فقط عدد می توانید وارد کنید")]
         public string TelMatab { get; set; }
 
-        public string province { get; set; }
+        public int DoctorId { get; set; }
         public string Description { get; set; }
         public string Certificate { get; set; }
         public string Activate { get; set; }

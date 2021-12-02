@@ -15,8 +15,9 @@ namespace VisitOnline.Services
         int GetMaxRole();
 
         void UpdateDoctor(DoctorViewModel models  , string username);
-        string GetUserRoleName(string username);
+        string GetUserNameFamily(string username);
         Doctor GetDoctor(string username);
+        string GetTakhasos(int id);
         string GetUserStatus(string username);
 
         Sick GetSick(string username);
@@ -26,9 +27,13 @@ namespace VisitOnline.Services
 
         List<VisitRequest> GetVisitList();
 
-        void AddRequestVisit(RequestVisitModel model);
+     
 
-        List<Doctor> GetListDoctor(string category);
+        List<DoctorViewModel> GetListDoctor(int category);
+
+        void AddRequsetVisit(RequestVisitModel request , string username);
+
+        List<RequestVisitModel> GetListReViDoc(string username);
 
     }
 }

@@ -46,7 +46,7 @@ namespace VisitOnline.Controllers
                 Description = users.Description,
                 MeliCode = users.MeliCode,
                 NameFamily = users.User.NameFamily,
-                province = users.province,
+                DoctorId = users.DoctorId,
                 Rate = users.Rate,
                 SNP = users.SNP,
                 Takhasos = users.Takhasos,
@@ -62,14 +62,15 @@ namespace VisitOnline.Controllers
             
             string currentuser = User.Identity.Name;
             Doctor users = user.GetDoctor(currentuser);
+
             DoctorViewModel doctor = new DoctorViewModel()
             {
-                Mobile = users.User.Mobile,
+               
                 AddressMatab = users.AddressMatab,
                 Description = users.Description,
                 MeliCode = users.MeliCode,
                 NameFamily = users.User.NameFamily,
-                province = users.province,
+                DoctorId = users.DoctorId,
                 Rate = users.Rate,
                 SNP = users.SNP,
                 Takhasos = users.Takhasos,
@@ -149,20 +150,33 @@ namespace VisitOnline.Controllers
         
         public IActionResult RequestVisit()
         {
+
             return View();
         }
 
         [HttpPost]
         public IActionResult RequestVisit(RequestVisitModel model)
         {
-
+            if (ModelState.IsValid)
+            {
+                string cuser = User.Identity.Name;
+                user.AddRequsetVisit(model, cuser);
+            }
             return View();
         }
 
-        public List<Doctor> GetDoctor(string category)
+        public List<DoctorViewModel> GetDoctor(int id)
         {
 
-            return user.GetListDoctor(category); 
+            return user.GetListDoctor(id); 
+        }
+
+
+        public IActionResult SeeReViDoc()
+        {
+            string cuser = User.Identity.Name;
+           List<RequestVisitModel> visitModels = user.GetListReViDoc(cuser);
+            return View(visitModels);
         }
 
     }

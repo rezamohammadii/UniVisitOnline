@@ -1,0 +1,105 @@
+﻿@model IEnumerable<VisitOnline.Models.RequestVisitModel>
+@{
+    ViewData["Title"] = "SeeReViDoc";
+    Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="col-sm-12 p-2">
+            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                ویزیت های دریافتی
+                <i class="bi bi-menu-down"></i>
+            </p>
+            <hr class="my-2">
+        </div>
+        <div class="py-3">
+            <div class="col-xxl-11 m-auto p-1">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th class="text-center" scope="col">
+                                    نام بیمار
+                                </th>
+                                <th class="text-center" scope="col">
+                                    موبایل بیمار
+                                </th>
+                                <th class="text-center" scope="col">
+                                   عنوان
+                                </th>
+                                <th class="text-center" scope="col">
+                                    شماره ویزیت
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تاریخ
+                                </th>
+                                <th class="text-center" scope="col">
+                                    وضعیت
+                                </th>
+                                <th class="text-center" scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                
+                                <td class="text-center text-secondary">
+                                    @item.NameSick
+                                </td>
+                                <td class="text-center text-secondary">
+                                    @item.MobileSick
+                                </td>
+                                <td class="text-center text-secondary">
+                                    @item.Title
+                                </td>
+                                <td class="text-center text-secondary">
+                                    @item.NumberNoskhe
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <span>
+                                        @item.Date
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    @switch (item.Status)
+                                    {
+                                        case "waiting":
+                                            <span class="badge bg-warning">
+                                                پاسخ داده نشده
+                                            </span>
+                                            break;
+                                        case "reject":
+                                            <span class="badge bg-danger">
+                                                رد شده
+                                            </span>
+                                            break;
+                                        case "ok":
+                                            <span class="badge bg-success">
+                                                پاسخ داده شد
+                                            </span>
+                                            break;
+                                    }
+
+                                </td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-sm btn-outline-success">
+                                        مشاهده
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

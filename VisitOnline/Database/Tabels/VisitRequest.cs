@@ -16,9 +16,8 @@ namespace VisitOnline.Database.Tabels
         public string Title { get; set; }
         public int NumberNoskhe { get; set; }
         public string Status { get; set; }
+        public string Description { get; set; }
         public string Date { get; set; }
-        public Sick Sick { get; set; }
-        public Doctor Doctor { get; set; }
 
        
     }

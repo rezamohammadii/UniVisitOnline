@@ -182,8 +182,8 @@ namespace VisitOnline.Controllers
                             Doctor doctor = new Doctor()
                             {
                                 Rate = 0,
-                                UserId = users.Id , 
-                                RequestId = 0
+                                UserId = users.Id 
+                               
                                 
                             };
                             context.Doctors.Add(doctor);
@@ -204,6 +204,12 @@ namespace VisitOnline.Controllers
                 
             }
             return View(models);
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/User/login");
         }
       
     }
