@@ -17,7 +17,10 @@ namespace VisitOnline.Database.Tabels
         public int NumberNoskhe { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
-        public string Date { get; set; }
+        public string DateRequest { get; set; }
+        public string DateAnswer { get; set; }
+        public string AnswerDoctor { get; set; }
+        public string PicNoskhe { get; set; }
 
        
     }

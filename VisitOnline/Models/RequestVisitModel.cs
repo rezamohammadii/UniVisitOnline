@@ -37,8 +37,11 @@ namespace VisitOnline.Models
         public string SelectDoctor { get; set; }
         public string MobileSick { get; set; }
         public string NameSick { get; set; }
-        public string Date { get; set; }
-        
+        public string DateRequest { get; set; }
+        public string DateAnswer { get; set; }
+        public string AnswerDoctor { get; set; }
+        public string PicNoskhe { get; set; }
+
 
     }
 }

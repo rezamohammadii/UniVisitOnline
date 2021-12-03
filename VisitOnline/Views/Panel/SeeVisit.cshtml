@@ -55,7 +55,7 @@
                                     </td>
                                     <td class="text-center text-secondary">
                                         <span>
-                                            @item.Date
+                                            @item.DateRequest
                                         </span>
                                     </td>
                                     <td class="text-center">
@@ -80,7 +80,7 @@
 
                                     </td>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-success">
+                                        <a href="" class="btn btn-sm btn-outline-success" onclick="GetRequsetData(@item.NumberNoskhe)">
                                             مشاهده
                                         </a>
                                     </td>
@@ -93,6 +93,59 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content shadow rounded-custom-3">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                            <div class="col-10 align-self-center p-1">
+                                <p class="h5 text-dark my-1">
+                                    شماره ویزیت
+                                </p>
+                                <p class="h6 text-secondary my-1">
+                                    تخصص پزشک
+                                </p>
+                            </div>
+                        </div>
+                        @*<div class="col-12 p-1">
+                                <p class="ismb my-3 h5 text-b text-center">
+                                    مبلغ ویزیت
+                                </p>
+                                <p class="ismb my-3 h4 text-a text-center">
+                                    ۵۰،۰۰۰ تومان
+                                </p>
+                                <p class="my-3 h6 text-danger text-center">
+                                    آیا مطمئن هستید؟
+                                </p>
+                            </div>*@
+                        <div class="col-12 p-2">
+                            <a href="" class="btn btn-success rounded-custom-2 w-100">
+                                پرداخت و ارسال درخواست به پزشک
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-			
+
+@section Scripts
+{
+<script>
+    function GetRequsetData(id) {
+        alert(id);
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: "/Panel/VisitData" + id,
+            data: {}
+        }).done(function (res) {
+            console.log("VisitData", res);
+        })
+    }
+</script>
+}

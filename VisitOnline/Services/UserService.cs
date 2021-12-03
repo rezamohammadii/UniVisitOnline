@@ -32,7 +32,7 @@ namespace VisitOnline.Services
                 Description = request.Description,
                 Status = "waiting",
                 Title = request.Title,
-                Date = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
+                DateRequest = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
                              "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00")
             };
             context.VisitRequests.Add(visit);
@@ -57,7 +57,7 @@ namespace VisitOnline.Services
             List<RequestVisitModel> requests = new List<RequestVisitModel>();
             int getDocId = context.Doctors.Include(x => x.User).FirstOrDefault(u => u.User.Mobile == username).DoctorId;
             
-            requests = context.VisitRequests.Where(x => x.DoctorId == getDocId).Select(r => new RequestVisitModel { Description = r.Description, NumberNoskhe = r.NumberNoskhe.ToString(), Title = r.Title, MobileSick = r.SickId.ToString(), NameSick = r.SickId.ToString() , Status = r.Status , Date = r.Date}).ToList();
+            requests = context.VisitRequests.Where(x => x.DoctorId == getDocId).Select(r => new RequestVisitModel { Description = r.Description, NumberNoskhe = r.NumberNoskhe.ToString(), Title = r.Title, MobileSick = r.SickId.ToString(), NameSick = r.SickId.ToString() , Status = r.Status , DateRequest = r.DateRequest}).ToList();
             foreach (var item in requests)
             {
                 var getUsr = context.Sick.Include(x=>x.User).Where(u => u.SickId == int.Parse(item.MobileSick)).FirstOrDefault();
@@ -70,6 +70,14 @@ namespace VisitOnline.Services
         public int GetMaxRole()
         {
             return context.Roles.Max(i => i.Id);
+        }
+
+        public RequestVisitModel GetRequsetData(int NoskheId , string username)
+        {
+            List<RequestVisitModel> requestVisits = GetListReViDoc(username);
+
+            RequestVisitModel request = requestVisits.Where(x => x.NumberNoskhe == NoskheId.ToString()).FirstOrDefault();
+            return request;
         }
 
         public Sick GetSick(string username)

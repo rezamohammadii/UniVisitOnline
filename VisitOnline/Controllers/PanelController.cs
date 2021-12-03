@@ -146,8 +146,15 @@ namespace VisitOnline.Controllers
             List<VisitRequest> ListVisit = user.GetVisitList();
             return View(ListVisit);
         }
-
+        public RequestVisitModel VisitData(int id)
+        {
+            string cuser = User.Identity.Name;
+            RequestVisitModel visitModel = user.GetRequsetData(id, cuser);
+           
+            return visitModel;
+        }
         
+
         public IActionResult RequestVisit()
         {
 
