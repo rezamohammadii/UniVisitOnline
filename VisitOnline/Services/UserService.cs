@@ -116,7 +116,7 @@ namespace VisitOnline.Services
             doctor.AddressMatab = models.AddressMatab;
             doctor.Description = models.Description;
             doctor.MeliCode = models.MeliCode;
-            doctor.DoctorId = models.DoctorId;
+            
             doctor.Rate = doctor.Rate;
             doctor.SNP = models.SNP;
             doctor.Takhasos = getTakhasos;
@@ -126,6 +126,12 @@ namespace VisitOnline.Services
             context.SaveChanges();
         }
 
+        public void UpdateRequsetVisit(RequestVisitModel model, string username)
+        {
+            Doctor doctor = GetDoctor(username);
+            
+        }
+
         public void UpdateSick(SickviewModels models, string username)
         {
             Sick sick = GetSick(username);
@@ -133,6 +139,7 @@ namespace VisitOnline.Services
             sick.Age = models.Age;
             sick.City = models.City;
             sick.province = models.province;
+
             sick.Region = models.Region;
             sick.User.NameFamily = models.NameFamily;
            

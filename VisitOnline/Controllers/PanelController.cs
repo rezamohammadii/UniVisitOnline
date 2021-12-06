@@ -164,11 +164,11 @@ namespace VisitOnline.Controllers
         [HttpPost]
         public IActionResult RequestVisit(RequestVisitModel model)
         {
-            if (ModelState.IsValid)
-            {
-                string cuser = User.Identity.Name;
-                user.AddRequsetVisit(model, cuser);
-            }
+           
+            string cuser = User.Identity.Name;
+            user.AddRequsetVisit(model, cuser);
+
+            
             return View();
         }
 
@@ -185,6 +185,16 @@ namespace VisitOnline.Controllers
            List<RequestVisitModel> visitModels = user.GetListReViDoc(cuser);
             return View(visitModels);
         }
+
+        [HttpPost]
+        public IActionResult SeeReViDoc(RequestVisitModel model)
+        {
+            string cuser = User.Identity.Name;
+            
+            return View();
+        }
+
+
 
     }
 }

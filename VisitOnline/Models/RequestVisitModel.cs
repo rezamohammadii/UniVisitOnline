@@ -8,7 +8,7 @@ namespace VisitOnline.Models
 {
     public class RequestVisitModel
     {
-        [Display(Name = "عنوان بیماری ")]
+        
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
         [MaxLength(100, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(5, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]
@@ -23,14 +23,14 @@ namespace VisitOnline.Models
         public string Status { get; set; }
 
 
-        [Display(Name = "توضیحات ")]
+        
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
         [MaxLength(500, ErrorMessage = "مقدار {0} نباید بیش تر از {1} کاراکتر باشد")]
         [MinLength(5, ErrorMessage = "مقدار {0} نباید کم تر از {1} کاراکتر باشد")]
 
         public string Description { get; set; }
 
-        [Display(Name = "نوع بیماری ")]
+        
       
         public string SickType { get; set; }
 
