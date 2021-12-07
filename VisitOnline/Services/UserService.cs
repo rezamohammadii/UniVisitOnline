@@ -129,7 +129,15 @@ namespace VisitOnline.Services
         public void UpdateRequsetVisit(RequestVisitModel model, string username)
         {
             Doctor doctor = GetDoctor(username);
-            
+            VisitRequest request = context.VisitRequests.Where(x => x.NumberNoskhe == int.Parse(model.NumberNoskhe)).FirstOrDefault();
+            request.AnswerDoctor = model.AnswerDoctor;
+            request.DateAnswer = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
+                             "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            request.Status = "OK";
+            request.PicNoskhe = "/img/noskhe/"+ model.PicNoskhe;
+            context.SaveChanges();
+
+
         }
 
         public void UpdateSick(SickviewModels models, string username)

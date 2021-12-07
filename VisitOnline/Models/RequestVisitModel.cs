@@ -40,7 +40,7 @@ namespace VisitOnline.Models
         public string DateRequest { get; set; }
         public string DateAnswer { get; set; }
         public string AnswerDoctor { get; set; }
-        public string PicNoskhe { get; set; }
+        public F PicNoskhe { get; set; }
 
 
     }

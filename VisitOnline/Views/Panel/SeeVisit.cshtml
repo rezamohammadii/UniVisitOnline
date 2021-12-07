@@ -19,9 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="text-center" scope="col">
-                                    #
-                                </th>
+                                
                                 <th class="text-center" scope="col">
                                     عنوان
                                 </th>
@@ -29,7 +27,16 @@
                                     شماره ویزیت
                                 </th>
                                 <th class="text-center" scope="col">
-                                    تاریخ
+                                    تاریخ در خواست
+                                </th>
+                                <th class="text-center" scope="col">
+                                    پاسخ پزشک
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تاریخ پاسخ پزشک
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تصویر  نسخه پزشک
                                 </th>
                                 <th class="text-center" scope="col">
                                     وضعیت
@@ -43,48 +50,61 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <th class="text-center" scope="row">
-                                        @item.Id
-                                    </th>
-                                    <td class="text-center text-secondary">
-                                        @item.Title
-                                    </td>
-                                    <td class="text-center text-secondary">
-                                        @item.NumberNoskhe
-                                    </td>
-                                    <td class="text-center text-secondary">
-                                        <span>
-                                            @item.DateRequest
-                                        </span>
-                                    </td>
-                                    <td class="text-center">
-                                        @switch (item.Status)
-                                        {
-                                            case "waiting":
-                                                <span class="badge bg-warning">
-                                                    در انتظار پاسخ
-                                                </span>
-                                                break;
-                                            case "reject":
-                                                <span class="badge bg-danger">
-                                                    منتفی
-                                                </span>
-                                                break;
-                                            case "ok":
-                                                <span class="badge bg-success">
-                                                    پاسخ داده شد
-                                                </span>
-                                                break;
-                                        }
+                            <tr>
 
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-success" onclick="GetRequsetData(@item.NumberNoskhe)">
-                                            مشاهده
-                                        </a>
-                                    </td>
-                                </tr>
+                                <td class="text-center text-secondary">
+                                    @item.Title
+                                </td>
+                                <td class="text-center text-secondary">
+                                    @item.NumberNoskhe
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <span>
+                                        @item.DateRequest
+                                    </span>
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <span>
+                                        @item.AnswerDoctor
+                                    </span>
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <span>
+                                        @item.DateAnswer
+                                    </span>
+                                </td>
+                                <td class="text-center text-secondary">
+                                    <img src="~@item.PicNoskhe" width="100" height="100" />
+                                        
+                                    
+                                </td>
+                                <td class="text-center">
+                                    @switch (item.Status)
+                                    {
+                                        case "waiting":
+                                            <span class="badge bg-warning">
+                                                در انتظار پاسخ
+                                            </span>
+                                            break;
+                                        case "reject":
+                                            <span class="badge bg-danger">
+                                                منتفی
+                                            </span>
+                                            break;
+                                        case "ok":
+                                            <span class="badge bg-success">
+                                                پاسخ داده شد
+                                            </span>
+                                            break;
+                                    }
+
+                                </td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-sm btn-outline-success" onclick="GetRequsetData(@item.NumberNoskhe)">
+                                        مشاهده
+                                    </a>
+                                </td>
+                            </tr>
                             }
 
 

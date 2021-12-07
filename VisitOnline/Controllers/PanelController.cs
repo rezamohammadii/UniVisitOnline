@@ -186,12 +186,15 @@ namespace VisitOnline.Controllers
             return View(visitModels);
         }
 
+
+
         [HttpPost]
-        public IActionResult SeeReViDoc(RequestVisitModel model)
+        public bool AnswerViDoc(RequestVisitModel model)
         {
             string cuser = User.Identity.Name;
-            
-            return View();
+            user.UpdateRequsetVisit(model, cuser);
+
+            return true;
         }
 
 
