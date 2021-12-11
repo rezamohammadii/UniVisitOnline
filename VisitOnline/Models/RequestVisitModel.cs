@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,8 +41,10 @@ namespace VisitOnline.Models
         public string DateRequest { get; set; }
         public string DateAnswer { get; set; }
         public string AnswerDoctor { get; set; }
-        public F PicNoskhe { get; set; }
+        public string PicNoskhe { get; set; }
+        
 
 
     }
+    
 }

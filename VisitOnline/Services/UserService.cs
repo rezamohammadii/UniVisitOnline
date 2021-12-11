@@ -66,15 +66,36 @@ namespace VisitOnline.Services
             }
             return requests;
         }
+        public List<RequestVisitModel> GetListReViSick(string username)
+        {
+            List<RequestVisitModel> requests = new List<RequestVisitModel>();
+            int getDocId = context.Sick.Include(x => x.User).FirstOrDefault(u => u.User.Mobile == username).SickId;
+
+            requests = context.VisitRequests.Where(x => x.DoctorId == getDocId).Select(r => new RequestVisitModel { Description = r.Description, NumberNoskhe = r.NumberNoskhe.ToString(), Title = r.Title,  NameSick = r.SickId.ToString(), Status = r.Status, DateRequest = r.DateRequest , AnswerDoctor = r.AnswerDoctor , DateAnswer = r.DateAnswer , SelectDoctor = r.DoctorId.ToString() }).ToList();
+            foreach (var item in requests)
+            {
+                var getUsr = context.Doctors.Include(x => x.User).Where(u => u.DoctorId == int.Parse(item.SelectDoctor)).FirstOrDefault();
+                item.MobileSick = getUsr.User.Mobile;
+                item.NameSick = getUsr.User.NameFamily;
+            }
+            return requests;
+        }
 
         public int GetMaxRole()
         {
             return context.Roles.Max(i => i.Id);
         }
 
-        public RequestVisitModel GetRequsetData(int NoskheId , string username)
+        public RequestVisitModel GetRequsetDataDoc(int NoskheId , string username)
         {
             List<RequestVisitModel> requestVisits = GetListReViDoc(username);
+
+            RequestVisitModel request = requestVisits.Where(x => x.NumberNoskhe == NoskheId.ToString()).FirstOrDefault();
+            return request;
+        }
+        public RequestVisitModel GetRequsetDataSick(int NoskheId, string username)
+        {
+            List<RequestVisitModel> requestVisits = GetListReViSick(username);
 
             RequestVisitModel request = requestVisits.Where(x => x.NumberNoskhe == NoskheId.ToString()).FirstOrDefault();
             return request;
@@ -134,7 +155,7 @@ namespace VisitOnline.Services
             request.DateAnswer = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
                              "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             request.Status = "OK";
-            request.PicNoskhe = "/img/noskhe/"+ model.PicNoskhe;
+            
             context.SaveChanges();
 
 

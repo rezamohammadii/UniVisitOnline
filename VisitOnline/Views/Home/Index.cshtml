@@ -8,3 +8,72 @@
     <a href="/User/Login">login</a>
     <a href="/User/register">regisert</a>
 </div>
+
+
+<div class="container">
+    <div id="userinfo" class=" row">
+        <label for="username">please your userrname</label>
+        <input type="text" class="form-control" id="username" name="username" autocomplete="off" />
+        <button type="button" class="btn btn-block" onclick="SetUsername();">join</button>
+    </div>
+    <div id="messagearea" class="row" style="display:none">
+        <div>Joind as : <b><span id="username1">Not Set</span></b></div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <ul id="messageList"></ul>
+            </div>
+        </div>
+        <hr />
+        <input type="text" id="message" autocomplete="off" />
+        <input type="button" id="sendbutton" value="Send Message" />
+    </div>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js" ></script>
+<script>
+    "use strict"
+    let d = new Date().toLocaleDateString();
+    let d2 = new Date().toTimeString().split(" ")[0];
+    //let time = d.getTime();
+    console.log(d)
+    console.log(d2)
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+    var username = "";
+    document.getElementById("sendbutton").disabled = true;
+    connection.on("ReceiveMessage", function (user, message) {
+        var msg = message.replace(/&/g, "&amp;").replace(/</g, "&gt;");
+        var encodeMsg = user + " says: " + msg;
+        var li = document.createElement("li");
+       
+        li.textContent = encodeMsg + " " + d + " " + d2;
+        
+        document.getElementById("messageList").appendChild(li);
+
+    });
+    connection.start().then(function () {
+        document.getElementById("sendbutton").disabled = false;
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+    document.getElementById("sendbutton").addEventListener("click", function (event) {
+        var message = document.getElementById("message").value;
+        connection.invoke("SendMessage", username, message).then(function () {
+            document.getElementById("message").value = "";
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+        event.preventDefault();
+    });
+    function SetUsername() {
+        var usernameinput = document.getElementById("username").value;
+        if (usernameinput === "") {
+            alert("please enter your user name");
+            return;
+        }
+        username = usernameinput;
+        document.getElementById("userinfo").style.display = 'none';
+        document.getElementById("messagearea").style.display = 'block';
+        document.getElementById("username1").innerText = usernameinput;
+    }
+</script>

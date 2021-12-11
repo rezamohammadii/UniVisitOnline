@@ -35,9 +35,7 @@
                                 <th class="text-center" scope="col">
                                     تاریخ پاسخ پزشک
                                 </th>
-                                <th class="text-center" scope="col">
-                                    تصویر  نسخه پزشک
-                                </th>
+                              
                                 <th class="text-center" scope="col">
                                     وضعیت
                                 </th>
@@ -72,12 +70,7 @@
                                     <span>
                                         @item.DateAnswer
                                     </span>
-                                </td>
-                                <td class="text-center text-secondary">
-                                    <img src="~@item.PicNoskhe" width="100" height="100" />
-                                        
-                                    
-                                </td>
+                                </td>    
                                 <td class="text-center">
                                     @switch (item.Status)
                                     {
@@ -91,7 +84,7 @@
                                                 منتفی
                                             </span>
                                             break;
-                                        case "ok":
+                                        case "OK":
                                             <span class="badge bg-success">
                                                 پاسخ داده شد
                                             </span>
@@ -113,41 +106,64 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content shadow rounded-custom-3">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                            <div class="col-10 align-self-center p-1">
-                                <p class="h5 text-dark my-1">
-                                    شماره ویزیت
-                                </p>
-                                <p class="h6 text-secondary my-1">
-                                    تخصص پزشک
-                                </p>
-                            </div>
-                        </div>
-                        @*<div class="col-12 p-1">
-                                <p class="ismb my-3 h5 text-b text-center">
-                                    مبلغ ویزیت
-                                </p>
-                                <p class="ismb my-3 h4 text-a text-center">
-                                    ۵۰،۰۰۰ تومان
-                                </p>
-                                <p class="my-3 h6 text-danger text-center">
-                                    آیا مطمئن هستید؟
-                                </p>
-                            </div>*@
-                        <div class="col-12 p-2">
-                            <a href="" class="btn btn-success rounded-custom-2 w-100">
-                                پرداخت و ارسال درخواست به پزشک
-                            </a>
-                        </div>
+      
+    </div>
+</div>
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content shadow rounded-custom-3">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1">
+                            شماره ویزیت
+                        </p>
+                        <p class="h6 text-secondary my-1" id="jNV">
+
+                        </p>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1">
+                            نام پزشک
+                        </p>
+                        <p class="h6 text-secondary my-1" id="nB">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1">
+                            توضیحات بیمار
+                        </p>
+                        <textarea class="form-control" id="input22" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1">
+                            توضیحات پزشک
+                        </p>
+                        <textarea class="form-control" id="input32" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1">
+                             تاریخ پاسخ
+                        </p>
+                        <p class="h6 text-secondary my-1" id="dA">
+
+                        </p>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -157,14 +173,20 @@
 {
 <script>
     function GetRequsetData(id) {
-        alert(id);
+       
         event.preventDefault();
         $.ajax({
             type: 'GET',
-            url: "/Panel/VisitData" + id,
+            url: "/Panel/VisitData/" + id,
             data: {}
         }).done(function (res) {
-            console.log("VisitData", res);
+            console.log(res)
+            $("#alertModal").modal("show");
+            $("#jNV").text(res.numberNoskhe);
+            $("#nB").text(res.nameSick);
+            $("#input22").val(res.description);
+            $("#input32").val(res.answerDoctor);
+            $("#dA").text(res.dateAnswer);
         })
     }
 </script>
