@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using VisitOnline.Database.Tabels;
 using VisitOnline.Models;
 using VisitOnline.Services;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace VisitOnline.Controllers
 {
@@ -149,11 +151,19 @@ namespace VisitOnline.Controllers
         public RequestVisitModel VisitData(int id)
         {
             string cuser = User.Identity.Name;
-            RequestVisitModel visitModel = user.GetRequsetData(id, cuser);
+            RequestVisitModel visitModel = user.GetRequsetDataSick(id, cuser);
            
             return visitModel;
+
         }
-        
+        public RequestVisitModel VisitForDocData(int id)
+        {
+            string cuser = User.Identity.Name;
+            RequestVisitModel visitModel = user.GetRequsetDataDoc(id, cuser);
+
+            return visitModel;
+        }
+
 
         public IActionResult RequestVisit()
         {
@@ -164,11 +174,11 @@ namespace VisitOnline.Controllers
         [HttpPost]
         public IActionResult RequestVisit(RequestVisitModel model)
         {
-            if (ModelState.IsValid)
-            {
-                string cuser = User.Identity.Name;
-                user.AddRequsetVisit(model, cuser);
-            }
+           
+            string cuser = User.Identity.Name;
+            user.AddRequsetVisit(model, cuser);
+
+            
             return View();
         }
 
@@ -185,6 +195,21 @@ namespace VisitOnline.Controllers
            List<RequestVisitModel> visitModels = user.GetListReViDoc(cuser);
             return View(visitModels);
         }
+
+      
+
+        [HttpPost]
+        public bool AnswerViDoc(RequestVisitModel model)
+        {
+            
+
+            string cuser = User.Identity.Name;
+            user.UpdateRequsetVisit(model, cuser);
+
+            return true;
+        }
+
+
 
     }
 }

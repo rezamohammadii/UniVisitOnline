@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using VisitOnline.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using VisitOnline.Hubs;
 
 namespace VisitOnline
 {
@@ -40,6 +41,7 @@ namespace VisitOnline
                 opt.ExpireTimeSpan = TimeSpan.FromMinutes(60);
             });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSignalR();
             services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection"));
@@ -80,6 +82,7 @@ namespace VisitOnline
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=User}/{action=Login}/{id?}");
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

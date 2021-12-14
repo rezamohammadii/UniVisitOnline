@@ -34,8 +34,12 @@ namespace VisitOnline.Services
         void AddRequsetVisit(RequestVisitModel request , string username);
 
         List<RequestVisitModel> GetListReViDoc(string username);
+        List<RequestVisitModel> GetListReViSick(string username);
 
-        RequestVisitModel GetRequsetData(int NoskheId , string username); 
+        RequestVisitModel GetRequsetDataDoc(int NoskheId , string username);
+        RequestVisitModel GetRequsetDataSick(int NoskheId , string username);
+
+        void UpdateRequsetVisit(RequestVisitModel model, string username);
 
     }
 }

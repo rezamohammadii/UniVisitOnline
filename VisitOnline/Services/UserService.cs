@@ -66,15 +66,36 @@ namespace VisitOnline.Services
             }
             return requests;
         }
+        public List<RequestVisitModel> GetListReViSick(string username)
+        {
+            List<RequestVisitModel> requests = new List<RequestVisitModel>();
+            int getDocId = context.Sick.Include(x => x.User).FirstOrDefault(u => u.User.Mobile == username).SickId;
+
+            requests = context.VisitRequests.Where(x => x.DoctorId == getDocId).Select(r => new RequestVisitModel { Description = r.Description, NumberNoskhe = r.NumberNoskhe.ToString(), Title = r.Title,  NameSick = r.SickId.ToString(), Status = r.Status, DateRequest = r.DateRequest , AnswerDoctor = r.AnswerDoctor , DateAnswer = r.DateAnswer , SelectDoctor = r.DoctorId.ToString() }).ToList();
+            foreach (var item in requests)
+            {
+                var getUsr = context.Doctors.Include(x => x.User).Where(u => u.DoctorId == int.Parse(item.SelectDoctor)).FirstOrDefault();
+                item.MobileSick = getUsr.User.Mobile;
+                item.NameSick = getUsr.User.NameFamily;
+            }
+            return requests;
+        }
 
         public int GetMaxRole()
         {
             return context.Roles.Max(i => i.Id);
         }
 
-        public RequestVisitModel GetRequsetData(int NoskheId , string username)
+        public RequestVisitModel GetRequsetDataDoc(int NoskheId , string username)
         {
             List<RequestVisitModel> requestVisits = GetListReViDoc(username);
+
+            RequestVisitModel request = requestVisits.Where(x => x.NumberNoskhe == NoskheId.ToString()).FirstOrDefault();
+            return request;
+        }
+        public RequestVisitModel GetRequsetDataSick(int NoskheId, string username)
+        {
+            List<RequestVisitModel> requestVisits = GetListReViSick(username);
 
             RequestVisitModel request = requestVisits.Where(x => x.NumberNoskhe == NoskheId.ToString()).FirstOrDefault();
             return request;
@@ -116,7 +137,7 @@ namespace VisitOnline.Services
             doctor.AddressMatab = models.AddressMatab;
             doctor.Description = models.Description;
             doctor.MeliCode = models.MeliCode;
-            doctor.DoctorId = models.DoctorId;
+            
             doctor.Rate = doctor.Rate;
             doctor.SNP = models.SNP;
             doctor.Takhasos = getTakhasos;
@@ -126,6 +147,20 @@ namespace VisitOnline.Services
             context.SaveChanges();
         }
 
+        public void UpdateRequsetVisit(RequestVisitModel model, string username)
+        {
+            Doctor doctor = GetDoctor(username);
+            VisitRequest request = context.VisitRequests.Where(x => x.NumberNoskhe == int.Parse(model.NumberNoskhe)).FirstOrDefault();
+            request.AnswerDoctor = model.AnswerDoctor;
+            request.DateAnswer = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
+                             "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            request.Status = "OK";
+            
+            context.SaveChanges();
+
+
+        }
+
         public void UpdateSick(SickviewModels models, string username)
         {
             Sick sick = GetSick(username);
@@ -133,6 +168,7 @@ namespace VisitOnline.Services
             sick.Age = models.Age;
             sick.City = models.City;
             sick.province = models.province;
+
             sick.Region = models.Region;
             sick.User.NameFamily = models.NameFamily;
            
