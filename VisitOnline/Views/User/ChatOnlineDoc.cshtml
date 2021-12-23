@@ -1,0 +1,158 @@
+﻿@using VisitOnline.Services
+@inject PanelLayoutScope scope
+@{
+    var user = User.Identity.Name;
+    var username = scope.GetUserNameFamily(user);
+}
+@{
+    ViewData["Title"] = "ChatOnlineDoc";
+    Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="col-sm-12 p-2">
+            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                عنوان چت
+                <i class="bi bi-chat-left-text"></i>
+            </p>
+            <hr class="my-2">
+        </div>
+        <div class="py-3">
+            <div class="col-xxl-11 m-auto p-1">
+                <div class="top-vi bg-light border p-1">
+                    <div class="row w-100 m-0">
+                        <div class="col-lg-4 text-start p-2">
+                            <p class="fw-bolder my-2 px-2 h6">
+                                نام بیمار :
+                                <span class="fw-light">
+                                    نام و نام خانوادگی
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-start p-2">
+                            <p class="fw-bolder my-2 px-2 h6">
+                                نام بیمار :
+                                <span class="fw-light">
+                                    نام و نام خانوادگی
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-lg-4 text-end p-2">
+                            <p class="fw-bolder my-2 px-2 h6">
+                                تاریخ :
+                                <span class="fw-light">
+                                    ۱۰ فروردین ۱۴۰۰
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-vi bg-white border p-1">
+                    <div class="chatroom">
+                        <div class="row w-100 m-0">
+                            <div class="col-12 text-start p-1">
+                                <div class="chatroom-item me" id="sender">
+                                   
+                                </div>
+                            </div>
+                            <div class="col-12 text-end p-1">
+                                <div class="chatroom-item guest" id="recevie">
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-vi bg-white p-0">
+                    <div class="row w-100 m-0">
+                        <div class="col-12 text-start p-0">
+                            <div class="m-0 position-relative border">
+                                <textarea name="" id="message" cols="30" rows="1" class="form-control rounded-0 border-0" placeholder="نوشتن پیام"></textarea>
+                                <button type="button" class="btn btn-link text-success position-absolute end-0 top-0 bottom-0 bg-white" id="sendbutton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotateY(180deg);" width="17" height="17" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338 7.494-7.494Z" />
+                                    </svg>
+                                    ارسال
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span id="user" style="visibility:hidden">@user</span>
+
+@section Scripts
+{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script type="text/javascript">
+    const cuurentUser = "@user";
+    const currentUserName = "@username";
+    "use strict"
+    var da = new Date().toLocaleDateString();
+    var tt = new Date().toTimeString().split(" ")[0];
+    //let time = d.getTime();
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
+    var username = "@user";
+    document.getElementById("sendbutton").disabled = true;
+    connection.on("ReceiveMessage", function (user, message) {
+        var msg = message.replace(/&/g, "&amp;").replace(/</g, "&gt;");
+        console.log("user", user)
+        console.log("mesg", message)
+        if (user == cuurentUser) {
+            var senderBox = document.createElement("p");
+            senderBox.textContent = msg;
+            document.getElementById("sender").appendChild(senderBox)
+            var time = document.createElement("small")
+            time.textContent - tt;
+            document.getElementById("sender").appendChild(time)
+            var datebox = document.createElement("small");
+            date.textContent = date
+            document.getElementById("sender").appendChild(datebox)
+        } else {
+            var senderBox = document.createElement("p");
+            senderBox.textContent = msg;
+            document.getElementById("recevie").appendChild(senderBox)
+            var time = document.createElement("small")
+            time.textContent - tt;
+            document.getElementById("recevie").appendChild(time)
+            var datebox = document.createElement("small");
+            date.textContent = date
+            document.getElementById("recevie").appendChild(datebox)
+        }
+
+
+    });
+    connection.start().then(function () {
+        document.getElementById("sendbutton").disabled = false;
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+    document.getElementById("sendbutton").addEventListener("click", function (event) {
+        var message = document.getElementById("message").value;
+        connection.invoke("SendMessage", username, message).then(function () {
+            document.getElementById("message").value = "";
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+        event.preventDefault();
+    });
+    function SetUsername() {
+        var usernameinput = document.getElementById("username").value;
+        if (usernameinput === "") {
+            alert("please enter your user name");
+            return;
+        }
+        username = usernameinput;
+        document.getElementById("userinfo").style.display = 'none';
+        document.getElementById("messagearea").style.display = 'block';
+        document.getElementById("username1").innerText = usernameinput;
+    }
+    </script>
+}

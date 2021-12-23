@@ -30,8 +30,9 @@
     </div>
 </div>
 
-<script src="~/js/signalr/dist/browser/signalr.js" ></script>
+@*<script src="~/js/signalr/dist/browser/signalr.js" ></script>
 <script>
+   
     "use strict"
     let d = new Date().toLocaleDateString();
     let d2 = new Date().toTimeString().split(" ")[0];
@@ -42,6 +43,8 @@
     var username = "";
     document.getElementById("sendbutton").disabled = true;
     connection.on("ReceiveMessage", function (user, message) {
+        console.log("user", user)
+        console.log("message", message)
         var msg = message.replace(/&/g, "&amp;").replace(/</g, "&gt;");
         var encodeMsg = user + " says: " + msg;
         var li = document.createElement("li");
@@ -76,4 +79,4 @@
         document.getElementById("messagearea").style.display = 'block';
         document.getElementById("username1").innerText = usernameinput;
     }
-</script>
+</script>*@

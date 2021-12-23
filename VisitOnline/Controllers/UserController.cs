@@ -211,6 +211,11 @@ namespace VisitOnline.Controllers
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/User/login");
         }
+
+        public IActionResult ChatOnlineDoc()
+        {
+            return View();
+        }
       
     }
 }
