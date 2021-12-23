@@ -93,8 +93,18 @@
 
                                 </td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-sm btn-outline-success" onclick="GetRequsetData(@item.NumberNoskhe)">
-                                        مشاهده
+                                    @*<a href="" class="btn btn-sm btn-outline-info" onclick="GetRequsetData(@item.NumberNoskhe)">
+                                       
+                                        <i class="far fa-eye"></i>
+
+                                    </a>*@
+                                    <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش"   onclick="GetRequsetData(@item.NumberNoskhe)">
+                                        
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <a href="" class="btn btn-sm btn-outline-danger" title="حذف" onclick="GetRequsetDelete(@item.NumberNoskhe)">
+                                        <i class="far fa-trash-alt"></i>
+                                        
                                     </a>
                                 </td>
                             </tr>
@@ -187,6 +197,19 @@
             $("#input22").val(res.description);
             $("#input32").val(res.answerDoctor);
             $("#dA").text(res.dateAnswer);
+        })
+    }
+
+    function GetRequsetDelete(id) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: "/Panel/DelReqSic/" + id,
+            data: {}
+        }).done(function (res) {
+            if (res) {
+                window.location.reload();
+            }
         })
     }
 </script>

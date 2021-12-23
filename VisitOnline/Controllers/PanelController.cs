@@ -156,6 +156,12 @@ namespace VisitOnline.Controllers
             return visitModel;
 
         }
+
+        public bool DelReqSic(int id)
+        {
+
+            return user.DeleteReqSic(id);
+        }
         public RequestVisitModel VisitForDocData(int id)
         {
             string cuser = User.Identity.Name;
@@ -208,6 +214,8 @@ namespace VisitOnline.Controllers
 
             return true;
         }
+
+
 
 
 

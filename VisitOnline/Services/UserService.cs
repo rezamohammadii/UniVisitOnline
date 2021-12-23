@@ -39,6 +39,18 @@ namespace VisitOnline.Services
             context.SaveChanges();
         }
 
+        public bool DeleteReqSic(int id)
+        {
+            VisitRequest getReq = context.VisitRequests.Where(x => x.NumberNoskhe == id).FirstOrDefault();
+            if (getReq == null)
+            {
+                return false;
+            }
+            context.VisitRequests.Remove(getReq);
+            context.SaveChanges();
+            return true;
+        }
+
         public Doctor GetDoctor(string username)
         {
             return context.Doctors.Include(x => x.User).FirstOrDefault(u => u.User.Mobile == username);

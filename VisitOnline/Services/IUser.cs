@@ -41,5 +41,7 @@ namespace VisitOnline.Services
 
         void UpdateRequsetVisit(RequestVisitModel model, string username);
 
+        bool DeleteReqSic(int id);
+
     }
 }

@@ -13,27 +13,9 @@
 
 </head>
 <body dir="rtl" class="bg-light">
-  
+
     <div class="panel">
-        @if (ViewBag.Status == "disable")
-        {
-            <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
-                <div class="alert alert-danger text-center">
-                    <h5 class="text-center">
-                        اکانت شما غیرفعال می باشد. برای فعال شدن حساب خود اطلاعات خود را تکمیل کنید
-                    </h5>
-                </div>
-            </div>
-        }@if (ViewBag.Status == "waiting")
-        {
-            <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
-                <div class="alert alert-warning text-center">
-                    <h5 class="text-center">
-                        حساب شما توسط مدیر در حال بررسی است
-                    </h5>
-                </div>
-            </div>
-        }
+      
         <div class="">
             <div class="row w-100 m-0">
                 <!-- start mobile -->
@@ -61,11 +43,11 @@
                             </a>
                             <a href="/Panel/CompleteInformation">
                                 <i class="bi bi-pen me-2"></i>
-                                تکمیل اطلاعات
+                                لیست کاربران
                             </a>
                             <a href="#">
                                 <i class="bi bi-menu-down me-2"></i>
-                                مشاهده ویزیت
+                                لیست پزشکان
                             </a>
                             <a href="#">
                                 <i class="bi bi-chat-left-text me-2"></i>
@@ -151,24 +133,18 @@
                                     <li class="list-unstyled py-1">
                                         <a href="/Panel/CompleteInformation" class="btn btn-side-link rounded-0 position-relative">
                                             <i class="bi bi-pen me-2 d-flex h5 my-0"></i>
-                                            تکمیل اطلاعات
+                                            لیست کاربران
                                             <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
                                         </a>
                                     </li>
                                     <li class="list-unstyled py-1">
                                         <a href="/Panel/SeeReViDoc" class="btn btn-side-link rounded-0 position-relative">
                                             <i class="bi bi-menu-down me-2 d-flex h5 my-0"></i>
-                                            مشاهده ویزیت
+                                            لیست پزشکان
                                             <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
                                         </a>
                                     </li>
-                                    <li class="list-unstyled py-1">
-                                        <a href="" class="btn btn-side-link rounded-0 position-relative">
-                                            <i class="bi bi-chat-left-text me-2 d-flex h5 my-0"></i>
-                                            چت آنلاین
-                                            <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
-                                        </a>
-                                    </li>
+                                  
                                     <li class="list-unstyled py-1">
                                         <a href="/User/Logout" class="btn btn-side-link rounded-0 position-relative">
                                             <i class="bi bi-power me-2 d-flex h5 my-0"></i>
