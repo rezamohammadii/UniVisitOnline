@@ -112,13 +112,14 @@ namespace VisitOnline.Controllers
                             IsPersistent = true
                         };
                         HttpContext.SignInAsync(principal, properties);
-                        return RedirectToAction("AdminDashboard", "Panel");
+                        return RedirectToAction("Home", "Admin");
                     }
                        
                 }
             }
             return View(models);
         }
+
 
         // GET: UserController/Edit/5
         public IActionResult Register()
