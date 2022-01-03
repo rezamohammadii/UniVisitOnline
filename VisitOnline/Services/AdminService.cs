@@ -22,23 +22,22 @@ namespace VisitOnline.Services
             List<Sick> sicks = new List<Sick>();
             sicks = context.Sick.ToList();
             List<Users> SikcUser = context.Users.Where(x => x.RoleId == 2).ToList();
-            foreach (var item in sickviews)
-            {
-               
+            SickviewModels models = new SickviewModels();
+
                 foreach (var item2 in sicks)
                 {
-                    item.Address = item2.Address;
-                    item.Age = item2.Age;
-                    item.City = item2.City;
-                    item.province = item2.province;
+                models.Address = item2.Address;
+                models.Age = item2.Age;
+                models.City = item2.City;
+                models.province = item2.province;
                     foreach (var item3 in SikcUser)
                     {
-                        item.NameFamily = item3.NameFamily;
-                        item.Mobile = item3.Mobile;
+                    models.NameFamily = item3.NameFamily;
+                    models.Mobile = item3.Mobile;
                     }
                 }
-
-            }
+            sickviews.Add(models);
+            
             return sickviews;
         }
     }
