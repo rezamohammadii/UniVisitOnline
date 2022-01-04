@@ -1,0 +1,98 @@
+﻿@model IEnumerable<VisitOnline.Models.DoctorViewModel>
+
+@{
+    ViewData["Title"] = "ListDoctors";
+    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="py-3">
+            <div class="col-xxl-11 m-auto p-1">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th class="text-center" scope="col">
+                                    نام و نام خانوادگی
+                                </th>
+                                <th class="text-center" scope="col">
+                                    موبایل
+                                </th>
+                                <th class="text-center" scope="col">
+                                    آدرس مطب
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تخصص
+                                </th>
+                                <th class="text-center" scope="col">
+                                   تصویر مجوز
+                                </th>
+                                <th class="text-center" scope="col">
+                                    شماره نظام پزشکی
+                                </th>
+
+                                <th class="text-center" scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td class="text-center text-secondary">
+                                        @item.NameFamily
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        @item.Mobile
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.AddressMatab
+                                        </span>
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.Takhasos
+                                        </span>
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.Certificate
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+
+                                        @item.SNP
+                                    </td>
+                                    <td class="text-center">
+                                        @*<a href="" class="btn btn-sm btn-outline-info" onclick="GetRequsetData(@item.NumberNoskhe)">
+
+                                                <i class="far fa-eye"></i>
+
+                                            </a>*@
+                                        <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش" @*onclick="GetRequsetData(@item.NumberNoskhe)"*@>
+
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="" class="btn btn-sm btn-outline-danger" title="حذف" @*onclick="GetRequsetDelete(@item.NumberNoskhe)"*@>
+                                            <i class="far fa-trash-alt"></i>
+
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

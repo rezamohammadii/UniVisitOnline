@@ -16,7 +16,7 @@
             <hr class="my-2">
         </div>
         <div class="py-3">
-            <div class="col-xxl-10 m-auto p-1"> 
+            <div class="col-xxl-10 m-auto p-1">
                 <form asp-action="CompleteInformation" class="m-0">
                     <div class="row w-100 m-0">
                         <div class="col-12 px-2 pb-4">
@@ -80,7 +80,7 @@
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
 
                             <div class="">
-                                <label for="input22" class="form-label"  asp-for="Description">
+                                <label for="input22" class="form-label" asp-for="Description">
                                     توضیحات درباره خود
                                 </label>
                                 <textarea class="form-control" asp-for="Description" id="input22" rows="3"></textarea>
@@ -117,15 +117,20 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
                             <div class="">
-                                <label for="input2" class="form-label"  asp-for="Certificate">
+                                <label for="input2" class="form-label" asp-for="Certificate">
                                     آپلود جواز پزشکی
                                 </label>
-                                <input type="file" asp-for="Certificate" class="form-control rounded-custom-2" id="inputGroupFile01">
+                                <input type="file" name="file" class="form-control rounded-custom-2" id="inputGroupFile01" onchange="imageConvert(this)">
                                 <span asp-validation-for="Certificate" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                           
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2" style="display:none;visibility:hidden">
+                            <input type="text" class="btn btn-success w-100 rounded-custom-2" id="cert" asp-for="Certificate" value="" />
+
+
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2">
                             <input type="submit" class="btn btn-success w-100 rounded-custom-2" value="ثبت اطلاعات" />
@@ -138,3 +143,22 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script>
+        var imageBase64 = "";
+        function imageConvert(element) {
+            var file = element.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                imageBase64 = reader.result;
+                alert(reader.result)
+                $("#cert").val(imageBase64);
+            }
+            reader.readAsDataURL(file);
+            console.log(imageBase64);
+
+            $("#cert").val(imageBase64);
+        }
+    </script>
+}

@@ -27,11 +27,18 @@ namespace VisitOnline.Controllers
 
 
         
-        public ActionResult ListSicks()
+        public IActionResult ListSicks()
         {
             List<SickviewModels> models = _admin.GetListSick();
             return View(models);
         }
+
+        public IActionResult ListDoctors()
+        {
+            List<DoctorViewModel> models = _admin.GetDoctorsList();
+            return View(models);
+        }
+
 
      
     }

@@ -10,6 +10,7 @@ namespace VisitOnline.Services
     public interface IAdmin
     {
         List<SickviewModels> GetListSick();
+        List<DoctorViewModel> GetDoctorsList();
         //#region For Permission
 
         //void InsertPermission(Permission permission);

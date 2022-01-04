@@ -8,15 +8,20 @@ using VisitOnline.Models;
 using VisitOnline.Services;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace VisitOnline.Controllers
 {
     public class PanelController : Controller
     {
         private IUser user;
-        public PanelController(IUser _user)
+        
+        public PanelController(IUser _user )
         {
             user = _user;
+            
         }
 
         public IActionResult DocDashboard()
@@ -81,12 +86,24 @@ namespace VisitOnline.Controllers
             return View(doctor);
         }
         [HttpPost]
+
         public IActionResult CompleteInformation(DoctorViewModel models)
         {
             if (ModelState.IsValid)
             {
                 string currentuser = User.Identity.Name;
                 user.UpdateDoctor(models , currentuser);
+
+                string convert = models.Certificate.Replace("data:image/png;base64,", String.Empty);
+               
+                byte[] imageBytes = Convert.FromBase64String(convert);
+               
+                Image image;
+                using (MemoryStream ms= new MemoryStream(imageBytes))
+                {
+                    image = Image.FromStream(ms);
+                }
+                image.Save("wwwroot/img/server/" + models.SNP + ".png", ImageFormat.Png);
 
             }
             return View(models);
