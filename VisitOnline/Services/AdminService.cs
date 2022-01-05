@@ -16,29 +16,53 @@ namespace VisitOnline.Services
             context = _context;
         }
 
+        public List<DoctorViewModel> GetDoctorsList()
+        {
+            List<DoctorViewModel> doctorViews = new List<DoctorViewModel>();
+            List<Doctor> doctors = new List<Doctor>();
+            doctors = context.Doctors.ToList();
+            List<Users> users = context.Users.Where(x => x.RoleId == 3).ToList();
+            DoctorViewModel model = new DoctorViewModel();
+            foreach (var item in doctors)
+            {
+                model.AddressMatab = item.AddressMatab;
+                model.MeliCode = item.MeliCode;
+                model.SNP = item.SNP;
+                model.Takhasos = item.Takhasos;
+                model.TelMatab = item.TelMatab;
+                foreach (var item2 in users)
+                {
+                    model.NameFamily = item2.NameFamily;
+                    model.Mobile = item2.Mobile;
+
+                }
+                doctorViews.Add(model);
+            }
+            return doctorViews;
+        }
+
         public List<SickviewModels> GetListSick()
         {
             List<SickviewModels> sickviews = new List<SickviewModels>();
             List<Sick> sicks = new List<Sick>();
             sicks = context.Sick.ToList();
             List<Users> SikcUser = context.Users.Where(x => x.RoleId == 2).ToList();
-            foreach (var item in sickviews)
-            {
-               
+            SickviewModels models = new SickviewModels();
+
                 foreach (var item2 in sicks)
                 {
-                    item.Address = item2.Address;
-                    item.Age = item2.Age;
-                    item.City = item2.City;
-                    item.province = item2.province;
+                models.Address = item2.Address;
+                models.Age = item2.Age;
+                models.City = item2.City;
+                models.province = item2.province;
                     foreach (var item3 in SikcUser)
                     {
-                        item.NameFamily = item3.NameFamily;
-                        item.Mobile = item3.Mobile;
+                    models.NameFamily = item3.NameFamily;
+                    models.Mobile = item3.Mobile;
                     }
+                 sickviews.Add(models);
                 }
 
-            }
             return sickviews;
         }
     }
