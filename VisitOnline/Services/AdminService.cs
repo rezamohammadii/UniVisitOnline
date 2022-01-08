@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,49 +20,15 @@ namespace VisitOnline.Services
         public List<DoctorViewModel> GetDoctorsList()
         {
             List<DoctorViewModel> doctorViews = new List<DoctorViewModel>();
-            List<Doctor> doctors = new List<Doctor>();
-            doctors = context.Doctors.ToList();
-            List<Users> users = context.Users.Where(x => x.RoleId == 3).ToList();
-            DoctorViewModel model = new DoctorViewModel();
-            foreach (var item in doctors)
-            {
-                model.AddressMatab = item.AddressMatab;
-                model.MeliCode = item.MeliCode;
-                model.SNP = item.SNP;
-                model.Takhasos = item.Takhasos;
-                model.TelMatab = item.TelMatab;
-                foreach (var item2 in users)
-                {
-                    model.NameFamily = item2.NameFamily;
-                    model.Mobile = item2.Mobile;
+            doctorViews = context.Doctors.Include(x => x.User).Select(u => new DoctorViewModel { AddressMatab = u.AddressMatab, MeliCode = u.MeliCode, NameFamily = u.User.NameFamily, Mobile = u.User.Mobile, SNP = u.SNP, Takhasos = u.Takhasos, TelMatab = u.TelMatab }).ToList();
 
-                }
-                doctorViews.Add(model);
-            }
             return doctorViews;
         }
 
         public List<SickviewModels> GetListSick()
         {
             List<SickviewModels> sickviews = new List<SickviewModels>();
-            List<Sick> sicks = new List<Sick>();
-            sicks = context.Sick.ToList();
-            List<Users> SikcUser = context.Users.Where(x => x.RoleId == 2).ToList();
-            SickviewModels models = new SickviewModels();
-
-                foreach (var item2 in sicks)
-                {
-                models.Address = item2.Address;
-                models.Age = item2.Age;
-                models.City = item2.City;
-                models.province = item2.province;
-                    foreach (var item3 in SikcUser)
-                    {
-                    models.NameFamily = item3.NameFamily;
-                    models.Mobile = item3.Mobile;
-                    }
-                 sickviews.Add(models);
-                }
+            sickviews = context.Sick.Include(i => i.User).Select(x => new SickviewModels { Address = x.Address, Age = x.Age, City = x.City, Mobile = x.User.Mobile, NameFamily = x.User.NameFamily, province = x.province }).ToList();
 
             return sickviews;
         }

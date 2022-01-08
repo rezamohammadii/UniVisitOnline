@@ -94,8 +94,9 @@ namespace VisitOnline.Controllers
                 string currentuser = User.Identity.Name;
                 user.UpdateDoctor(models , currentuser);
 
-                string convert = models.Certificate.Replace("data:image/png;base64,", String.Empty);
-               
+                string convert = models.Certificate.Replace("data:image/png;base64,", String.Empty).Replace("data:image/jpeg;base64," , String.Empty).Replace("data:image/jpg;base64," , String.Empty);
+                string getFormat = models.Certificate.Split("/")[1].Split(";")[0];
+
                 byte[] imageBytes = Convert.FromBase64String(convert);
                
                 Image image;
@@ -103,7 +104,23 @@ namespace VisitOnline.Controllers
                 {
                     image = Image.FromStream(ms);
                 }
-                image.Save("wwwroot/img/server/" + models.SNP + ".png", ImageFormat.Png);
+                switch (getFormat)
+                {
+                    case"png":
+                        image.Save("wwwroot/img/server/" + models.SNP +".png", ImageFormat.Png);
+                        break;
+                    case "jpeg":
+                        string ipath = "wwwroot/img/server/" + models.SNP + ".jpeg";
+                        var i = Image.FromFile(ipath);
+
+                        var i2 = new Bitmap(i);
+                        i2.Save(ipath , ImageFormat.Jpeg);
+                        break;
+                    case "jpg":
+                        image.Save("wwwroot/img/server/" + $"{ models.SNP}.jpg", ImageFormat.Jpeg);
+                        break;
+                }
+                
 
             }
             return View(models);
