@@ -17,11 +17,11 @@ namespace VisitOnline.Controllers
     public class PanelController : Controller
     {
         private IUser user;
-        
-        public PanelController(IUser _user )
+        private IHostingEnvironment hostingEnv;
+        public PanelController(IUser _user, IHostingEnvironment env)
         {
             user = _user;
-            
+            this.hostingEnv = env;
         }
 
         public IActionResult DocDashboard()
@@ -91,38 +91,43 @@ namespace VisitOnline.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 string currentuser = User.Identity.Name;
                 user.UpdateDoctor(models , currentuser);
 
-                string convert = models.Certificate.Replace("data:image/png;base64,", String.Empty).Replace("data:image/jpeg;base64," , String.Empty).Replace("data:image/jpg;base64," , String.Empty);
-                string getFormat = models.Certificate.Split("/")[1].Split(";")[0];
+                if (models.File != null)
+                {
+                    var FileDic = $"Cert\\{currentuser}";
 
-                byte[] imageBytes = Convert.FromBase64String(convert);
+                    string FilePath = Path.Combine(hostingEnv.WebRootPath, FileDic);
+
+                    if (!Directory.Exists(FilePath))
+
+                        Directory.CreateDirectory(FilePath);
+
+                    var fileName = models.File.FileName;
+
+                    var filePath = Path.Combine(FilePath, fileName);
+
+
+
+                    using (FileStream fs = System.IO.File.Create(filePath))
+
+                    {
+
+                        models.File.CopyTo(fs);
+
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
                
-                Image image;
-                using (MemoryStream ms= new MemoryStream(imageBytes))
-                {
-                    image = Image.FromStream(ms);
-                }
-                switch (getFormat)
-                {
-                    case"png":
-                        image.Save("wwwroot/img/server/" + models.SNP +".png", ImageFormat.Png);
-                        break;
-                    case "jpeg":
-                        string ipath = "wwwroot/img/server/" + models.SNP + ".jpeg";
-                        var i = Image.FromFile(ipath);
 
-                        var i2 = new Bitmap(i);
-                        i2.Save(ipath , ImageFormat.Jpeg);
-                        break;
-                    case "jpg":
-                        image.Save("wwwroot/img/server/" + $"{ models.SNP}.jpg", ImageFormat.Jpeg);
-                        break;
-                }
-                
 
             }
+            ViewBag.ComOk = true;
             return View(models);
         }
 
