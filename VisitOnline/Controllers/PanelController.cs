@@ -93,7 +93,8 @@ namespace VisitOnline.Controllers
             {
 
                 string currentuser = User.Identity.Name;
-                user.UpdateDoctor(models , currentuser);
+                user.UpdateDoctor
+                    (models , currentuser);
 
                 if (models.File != null)
                 {
@@ -106,8 +107,9 @@ namespace VisitOnline.Controllers
                         Directory.CreateDirectory(FilePath);
 
                     var fileName = models.File.FileName;
-
-                    var filePath = Path.Combine(FilePath, fileName);
+                    string getFormat = fileName.Split(".")[1];
+                    string newFilename = models.SNP + "." + getFormat;
+                    var filePath = Path.Combine(FilePath, newFilename);
 
 
 

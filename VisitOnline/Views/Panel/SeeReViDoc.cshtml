@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<VisitOnline.Models.RequestVisitModel>
+@using VisitOnline.Services
+@inject PanelLayoutScope scope
+
 @{
     ViewData["Title"] = "SeeReViDoc";
     Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
+    string status = scope.StatusActivate(User.Identity.Name);
 }
 
 <div class="col-xl-9 col-lg-8 col-md-7 p-2">
@@ -14,6 +18,17 @@
             <hr class="my-2">
         </div>
         <div class="py-3">
+            @if (status != "enable")
+            {
+                <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+                    <div class="alert alert-warning text-center">
+                        <h5 class="text-center">
+                            حساب شما هنوز فعال نشده یا در حال بررسی توسط مدیر است
+                        </h5>
+                    </div>
+                </div>
+            }else
+            {
             <div class="col-xxl-11 m-auto p-1">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -105,6 +120,9 @@
                     </table>
                 </div>
             </div>
+            }
+
+
         </div>
     </div>
 </div>
@@ -136,9 +154,9 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                    <div class="col-10 align-self-center p-1" >
+                    <div class="col-10 align-self-center p-1">
                         <p class="h5 text-dark my-1" style="color:#08ab6f !important">
-                           نام بیمار
+                            نام بیمار
                         </p>
                         <p class="h6 text-secondary my-1" id="nP">
 
@@ -146,7 +164,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                    <div class="col-10 align-self-center p-1" >
+                    <div class="col-10 align-self-center p-1">
                         <p class="h5 text-dark my-1" style="color:#08ab6f !important">
                             تاریخ درخواست
                         </p>
@@ -163,15 +181,15 @@
                         <textarea class="form-control" id="input22" rows="3"></textarea>
                     </div>
                 </div>
-              
+
                 @*<div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-            <div class="col-10 align-self-center p-1">
-                <p class="h5 text-dark my-1">
-                    تصویر نسخه
-                </p>
-                <input type="file" name="files"  class="form-control rounded-custom-2 text-start" id="input12"  multiple/>
-            </div>
-        </div>*@
+                        <div class="col-10 align-self-center p-1">
+                            <p class="h5 text-dark my-1">
+                                تصویر نسخه
+                            </p>
+                            <input type="file" name="files"  class="form-control rounded-custom-2 text-start" id="input12"  multiple/>
+                        </div>
+                    </div>*@
 
                 <div class="col-12 p-2">
                     <a href="" class="btn btn-success rounded-custom-2 w-100" onclick="PostChange()">
@@ -186,9 +204,9 @@
 @section Scripts
 {
     <script>
-       
+
         function GetRequsetData(id) {
-            
+
             event.preventDefault();
             $.ajax({
                 type: 'GET',
@@ -201,14 +219,14 @@
                 $("#tit").text(res.title);
                 $("#nP").text(res.nameSick);
                 $("#dR").text(res.dateRequest);
-               
+
             })
         }
         function PostChange() {
 
             var decription = $("#input22").val();
             var number = $("#jNV").text()
-            
+
             var data = {
                 "AnswerDoctor": decription, "NumberNoskhe": number
             }
@@ -216,25 +234,25 @@
             $.ajax({
                 type: 'POST',
                 url: "/Panel/AnswerViDoc",
-                data:  data
+                data: data
             }).done(function (res) {
                 if (res) {
                     $("#alertModal").modal("hide");
                 }
             })
         }
-        
-    function GetRequsetDelete(id) {
-        event.preventDefault();
-        $.ajax({
-            type: 'GET',
-            url: "/Panel/DelReqSic/" + id,
-            data: {}
-        }).done(function (res) {
-            if (res) {
-                window.location.reload();
-            }
-        })
-    }
+
+        function GetRequsetDelete(id) {
+            event.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: "/Panel/DelReqSic/" + id,
+                data: {}
+            }).done(function (res) {
+                if (res) {
+                    window.location.reload();
+                }
+            })
+        }
     </script>
 }

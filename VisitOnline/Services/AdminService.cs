@@ -17,10 +17,17 @@ namespace VisitOnline.Services
             context = _context;
         }
 
+        public void ActiveAccDoc(int id)
+        {
+            Doctor doctor = context.Doctors.Include(i=>i.User).Where(d => d.DoctorId == id).FirstOrDefault();
+            doctor.User.Activate = "enable";
+            context.SaveChanges();
+        }
+
         public List<DoctorViewModel> GetDoctorsList()
         {
             List<DoctorViewModel> doctorViews = new List<DoctorViewModel>();
-            doctorViews = context.Doctors.Include(x => x.User).Select(u => new DoctorViewModel { AddressMatab = u.AddressMatab, MeliCode = u.MeliCode, NameFamily = u.User.NameFamily, Mobile = u.User.Mobile, SNP = u.SNP, Takhasos = u.Takhasos, TelMatab = u.TelMatab }).ToList();
+            doctorViews = context.Doctors.Include(x => x.User).Select(u => new DoctorViewModel { AddressMatab = u.AddressMatab, MeliCode = u.MeliCode, NameFamily = u.User.NameFamily, Mobile = u.User.Mobile, SNP = u.SNP, Takhasos = u.Takhasos, TelMatab = u.TelMatab , DoctorId = u.DoctorId }).ToList();
 
             return doctorViews;
         }
