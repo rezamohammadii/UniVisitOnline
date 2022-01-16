@@ -10,6 +10,7 @@ namespace VisitOnline.Database.Tabels
     {
         [Key]
         public int Id { get; set; }
+        public int NumberTiket { get; set; }
         public string Title { get; set; }
         public string Sender { get; set; }
         public string Body { get; set; }
