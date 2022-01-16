@@ -13,11 +13,13 @@ namespace VisitOnline.Controllers
     public class AdminController : Controller
     {
         private IAdmin _admin;
+        private IUser _user;
         private DatabaseContext context;
-        public AdminController(DatabaseContext _context, IAdmin admin)
+        public AdminController(DatabaseContext _context, IAdmin admin , IUser user)
         {
             context = _context;
             _admin = admin;
+            _user = user;
         }
         // GET: Admin
         public IActionResult Home()
@@ -37,6 +39,20 @@ namespace VisitOnline.Controllers
         {
             List<DoctorViewModel> models = _admin.GetDoctorsList();
             return View(models);
+        }
+
+        public bool ConfirmActive(int id)
+        {
+            if (id != 0 )
+            {
+                _admin.ActiveAccDoc(id);
+            }
+
+            else
+            {
+                return false;
+            }
+            return true;
         }
 
 

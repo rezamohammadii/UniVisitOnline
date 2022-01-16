@@ -17,11 +17,11 @@ namespace VisitOnline.Controllers
     public class PanelController : Controller
     {
         private IUser user;
-        
-        public PanelController(IUser _user )
+        private IHostingEnvironment hostingEnv;
+        public PanelController(IUser _user, IHostingEnvironment env)
         {
             user = _user;
-            
+            this.hostingEnv = env;
         }
 
         public IActionResult DocDashboard()
@@ -91,21 +91,44 @@ namespace VisitOnline.Controllers
         {
             if (ModelState.IsValid)
             {
-                string currentuser = User.Identity.Name;
-                user.UpdateDoctor(models , currentuser);
 
-                string convert = models.Certificate.Replace("data:image/png;base64,", String.Empty);
-               
-                byte[] imageBytes = Convert.FromBase64String(convert);
-               
-                Image image;
-                using (MemoryStream ms= new MemoryStream(imageBytes))
+                string currentuser = User.Identity.Name;
+                user.UpdateDoctor (models , currentuser);
+
+                if (models.File != null)
                 {
-                    image = Image.FromStream(ms);
+                    var FileDic = $"Cert\\{currentuser}";
+
+                    string FilePath = Path.Combine(hostingEnv.WebRootPath, FileDic);
+
+                    if (!Directory.Exists(FilePath))
+
+                        Directory.CreateDirectory(FilePath);
+
+                    var fileName = models.File.FileName;
+                    string getFormat = fileName.Split(".")[1];
+                    string newFilename = models.SNP + "." + getFormat;
+                    var filePath = Path.Combine(FilePath, newFilename);
+
+
+
+                    using (FileStream fs = System.IO.File.Create(filePath))
+
+                    {
+
+                        models.File.CopyTo(fs);
+
+                    }
                 }
-                image.Save("wwwroot/img/server/" + models.SNP + ".png", ImageFormat.Png);
+                else
+                {
+                    return BadRequest();
+                }
+               
+
 
             }
+            ViewBag.ComOk = true;
             return View(models);
         }
 

@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<VisitOnline.Models.DoctorViewModel>
-
+@{
+    string format = ".png";
+}
 @{
     ViewData["Title"] = "ListDoctors";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
@@ -27,7 +29,7 @@
                                     تخصص
                                 </th>
                                 <th class="text-center" scope="col">
-                                   تصویر مجوز
+                                    تصویر مجوز
                                 </th>
                                 <th class="text-center" scope="col">
                                     شماره نظام پزشکی
@@ -62,7 +64,13 @@
                                     </td>
                                     <td class="text-center text-secondary">
                                         <span>
-                                            @item.Certificate
+                                            <span style="display:none;visibility:hidden;">
+                                                @{
+                                                    string newName = item.SNP + format;
+                                                }
+                                            </span>
+                                            <img src="~/Cert/@item.Mobile/@newName" width="100" height="100" />
+
                                         </span>
                                     </td>
                                     <td class="text-center">
@@ -75,8 +83,8 @@
                                                 <i class="far fa-eye"></i>
 
                                             </a>*@
-                                        <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش" @*onclick="GetRequsetData(@item.NumberNoskhe)"*@>
-
+                                        <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش" onclick="getrequsetdata(@item.DoctorId)">
+                                            @item.DoctorId
                                             <i class="far fa-eye"></i>
                                         </a>
                                         <a href="" class="btn btn-sm btn-outline-danger" title="حذف" @*onclick="GetRequsetDelete(@item.NumberNoskhe)"*@>
@@ -96,3 +104,18 @@
     </div>
 </div>
 
+@section Scripts
+{
+<script>
+    function getrequsetdata(id) {
+        $.ajax({
+           
+            type: "GET",
+            url: "/Admin/ConfirmActive/" + id,
+            data: {}
+        }).done(function (res) {
+
+        })
+    }
+</script>
+ }

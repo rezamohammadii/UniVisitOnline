@@ -21,6 +21,7 @@ namespace VisitOnline.Database
         public DbSet<DrogStore> DrogStores { get; set; }
         public DbSet<DrogRequset> DrogRequsets { get; set; }
         public DbSet<Takhasos> Takhasos { get; set; }
+        public DbSet<Tiket> Tikets { get; set; }
        
 
     }

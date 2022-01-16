@@ -23,5 +23,10 @@ namespace VisitOnline.Services
             return random.Next(1000, 9999).ToString();
             
         }
+
+        public string StatusActivate(string username)
+        {
+            return _user.GetUserStatus(username);
+        }
     }
 }

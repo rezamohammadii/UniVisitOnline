@@ -11,6 +11,7 @@ namespace VisitOnline.Services
     {
         List<SickviewModels> GetListSick();
         List<DoctorViewModel> GetDoctorsList();
+        void ActiveAccDoc(int id);
         //#region For Permission
 
         //void InsertPermission(Permission permission);

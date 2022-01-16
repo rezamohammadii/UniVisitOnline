@@ -4,161 +4,164 @@
     Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
 }
 
+ 
+ 
+    <div class="col-xl-9 col-lg-8 col-md-7 p-2">
+        <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+            <div class="alert alert-success" id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Success! </strong> Product have added to your wishlist.
+            </div>
+            <div class="col-sm-12 p-2">
+                <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                    تکمیل اطلاعات
+                    <i class="bi bi-pen"></i>
+                </p>
+                <hr class="my-2">
+            </div>
+            <div class="py-3">
+                <div class="col-xxl-10 m-auto p-1">
+                    @using (Html.BeginForm("CompleteInformation", "Panel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-
-<div class="col-xl-9 col-lg-8 col-md-7 p-2">
-    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
-        <div class="col-sm-12 p-2">
-            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
-                تکمیل اطلاعات
-                <i class="bi bi-pen"></i>
-            </p>
-            <hr class="my-2">
-        </div>
-        <div class="py-3">
-            <div class="col-xxl-10 m-auto p-1">
-                <form asp-action="CompleteInformation" class="m-0">
-                    <div class="row w-100 m-0">
-                        <div class="col-12 px-2 pb-4">
-                            <div class="pro-photo">
-                                <div class="small-12 medium-2 large-2 columns max-content mx-auto position-relative">
-                                    <div class="circle mx-auto">
-                                        <img class="profile-pic rounded-circle" src="~/img/download.jpg">
-                                    </div>
-                                    <div class="p-image">
-                                        <i class="bi bi-camera upload-button"></i>
-                                        <input class="file-upload" type="file" accept="image/*" />
+                    {
+                        <div class="row w-100 m-0">
+                            <div class="col-12 px-2 pb-4">
+                                <div class="pro-photo">
+                                    <div class="small-12 medium-2 large-2 columns max-content mx-auto position-relative">
+                                        <div class="circle mx-auto">
+                                            <img class="profile-pic rounded-circle" src="~/img/download.jpg">
+                                        </div>
+                                        <div class="p-image">
+                                            <i class="bi bi-camera upload-button"></i>
+                                            <input class="file-upload" type="file" accept="image/*" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input1" class="form-label" asp-for="NameFamily">
-                                    نام و نام خانوادگی
-                                </label>
-                                <input type="text" asp-for="NameFamily" class="form-control rounded-custom-2 text-start" id="input1" value="@Model.NameFamily" placeholder="نام و نام خانوادگی خود را بنویسید">
-                                <span asp-validation-for="NameFamily" class="text-danger"></span>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input1" class="form-label" asp-for="NameFamily">
+                                        نام و نام خانوادگی
+                                    </label>
+                                    <input type="text" asp-for="NameFamily" class="form-control rounded-custom-2 text-start" id="input1" value="@Model.NameFamily" placeholder="نام و نام خانوادگی خود را بنویسید">
+                                    <span asp-validation-for="NameFamily" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input2" class="form-label" asp-for="MeliCode">
+                                        کد ملی
+                                    </label>
+                                    <input type="text" asp-for="MeliCode" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
+                                    <span asp-validation-for="MeliCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="form-outline">
+                                    <label for="input2" class="form-label" asp-for="TelMatab">
+                                        تلفن مطب
+                                    </label>
+                                    <input type="tel" asp-for="TelMatab" class="form-control rounded-custom-2 text-start" id="input12" placeholder=" با پیش شماره شهری خود وارد کنید">
+                                    <span asp-validation-for="TelMatab" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input2" class="form-label" asp-for="Mobile">
+                                        شماره همراه
+                                    </label>
+                                    <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" value="@Model.Mobile" disabled>
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input12" class="form-label" asp-for="AddressMatab">
+                                        آدرس مطب
+                                    </label>
+                                    <textarea class="form-control" asp-for="AddressMatab" id="input12" rows="3"></textarea>
+                                    <span asp-validation-for="AddressMatab" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+
+                                <div class="">
+                                    <label for="input22" class="form-label" asp-for="Description">
+                                        توضیحات درباره خود
+                                    </label>
+                                    <textarea class="form-control" asp-for="Description" id="input22" rows="3"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+
+                                <select class="form-select form-select-sm" asp-for="Takhasos" aria-label=".form-select-sm example">
+                                    <option selected>تخصص</option>
+                                    <option value="1">ارتوپد </option>
+                                    <option value="2">قلب عروق</option>
+                                    <option value="3">مغز اعصاب</option>
+                                    <option value="4">بیماری های عفونی</option>
+                                    <option value="5">پوست و مو</option>
+                                    <option value="6">چشم</option>
+                                    <option value="7">گوش و حلق و بینی</option>
+                                    <option value="8">گوارش</option>
+                                    <option value="9">تغذیه</option>
+                                </select>
+                                <span asp-validation-for="Takhasos" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input2" class="form-label" asp-for="SNP">
+                                        شماره نظام پزشکی
+                                    </label>
+                                    <input type="number" asp-for="SNP" class="form-control rounded-custom-2 text-start" id="input12" placeholder="تخصص خود را بنویسید">
+                                </div>
+                                <span asp-validation-for="SNP" class="text-danger"></span>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+                                <div class="">
+                                    <label for="input2" class="form-label" asp-for="Certificate">
+                                        آپلود جواز پزشکی
+                                    </label>
+                                    <input type="file" asp-for="File" name="file" class="form-control rounded-custom-2" id="inputGroupFile01" onchange="imageConvert(this)">
+                                    <span asp-validation-for="Certificate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 p-2">
+
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2" style="display:none;visibility:hidden">
+                                <input type="text" class="btn btn-success w-100 rounded-custom-2" id="cert" asp-for="Certificate" value="" />
+
+
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2">
+                                <input type="submit" class="btn btn-success w-100 rounded-custom-2" id="myWish" value="ثبت اطلاعات" />
+
+
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input2" class="form-label" asp-for="MeliCode">
-                                    کد ملی
-                                </label>
-                                <input type="text" asp-for="MeliCode" class="form-control rounded-custom-2 text-start" id="input12" placeholder="کد ملی ۱۰ رقمی خود را بنویسید">
-                                <span asp-validation-for="MeliCode" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="form-outline">
-                                <label for="input2" class="form-label" asp-for="TelMatab">
-                                    تلفن مطب
-                                </label>
-                                <input type="tel" asp-for="TelMatab" class="form-control rounded-custom-2 text-start" id="input12" placeholder=" با پیش شماره شهری خود وارد کنید">
-                                <span asp-validation-for="TelMatab" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input2" class="form-label" asp-for="Mobile">
-                                    شماره همراه
-                                </label>
-                                <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" value="@Model.Mobile" disabled>
-                                <span asp-validation-for="Mobile" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input12" class="form-label" asp-for="AddressMatab">
-                                    آدرس مطب
-                                </label>
-                                <textarea class="form-control" asp-for="AddressMatab" id="input12" rows="3"></textarea>
-                                <span asp-validation-for="AddressMatab" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-
-                            <div class="">
-                                <label for="input22" class="form-label" asp-for="Description">
-                                    توضیحات درباره خود
-                                </label>
-                                <textarea class="form-control" asp-for="Description" id="input22" rows="3"></textarea>
-                                <span asp-validation-for="Description" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-
-                            <select class="form-select form-select-sm" asp-for="Takhasos" aria-label=".form-select-sm example">
-                                <option selected>تخصص</option>
-                                <option value="1">ارتوپد </option>
-                                <option value="2">قلب عروق</option>
-                                <option value="3">مغز اعصاب</option>
-                                <option value="4">بیماری های عفونی</option>
-                                <option value="5">پوست و مو</option>
-                                <option value="6">چشم</option>
-                                <option value="7">گوش و حلق و بینی</option>
-                                <option value="8">گوارش</option>
-                                <option value="9">تغذیه</option>
-                            </select>
-                            <span asp-validation-for="Takhasos" class="text-danger"></span>
-                        </div>
-
-
-
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input2" class="form-label" asp-for="SNP">
-                                    شماره نظام پزشکی
-                                </label>
-                                <input type="number" asp-for="SNP" class="form-control rounded-custom-2 text-start" id="input12" placeholder="تخصص خود را بنویسید">
-                            </div>
-                            <span asp-validation-for="SNP" class="text-danger"></span>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-                            <div class="">
-                                <label for="input2" class="form-label" asp-for="Certificate">
-                                    آپلود جواز پزشکی
-                                </label>
-                                <input type="file" name="file" class="form-control rounded-custom-2" id="inputGroupFile01" onchange="imageConvert(this)">
-                                <span asp-validation-for="Certificate" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 p-2">
-
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2" style="display:none;visibility:hidden">
-                            <input type="text" class="btn btn-success w-100 rounded-custom-2" id="cert" asp-for="Certificate" value="" />
-
-
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-6 ms-auto p-2">
-                            <input type="submit" class="btn btn-success w-100 rounded-custom-2" value="ثبت اطلاعات" />
-
-
-                        </div>
-                    </div>
-                </form>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
-@section Scripts
+    @section Scripts
 {
-    <script>
-        var imageBase64 = "";
-        function imageConvert(element) {
-            var file = element.files[0];
-            var reader = new FileReader();
-            reader.onloadend = function () {
-                imageBase64 = reader.result;
-                alert(reader.result)
-                $("#cert").val(imageBase64);
-            }
-            reader.readAsDataURL(file);
-            console.log(imageBase64);
-
-            $("#cert").val(imageBase64);
-        }
-    </script>
-}
+        <script>
+            $(document).ready(function () {
+\
+                   $("#success-alert").hide();
+                   alert("hi");
+                   $("#myWish").click(function showAlert() {
+                        $("#success-alert").fadeTo(6000, 500).slideUp(500, function() {
+                            $("#success-alert").slideUp(500);
+                        });
+                       
+                  });
+                });
+        </script>
+ }

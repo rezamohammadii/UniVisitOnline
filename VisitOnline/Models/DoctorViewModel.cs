@@ -43,6 +43,8 @@ namespace VisitOnline.Models
         public string Description { get; set; }
         public string Certificate { get; set; }
         public string Activate { get; set; }
+        public IFormFile File { get; set; }
+        public string FileName { get; set; }
 
         [Display(Name = "کد ملی")]
         [Required(ErrorMessage = "نباید بدون مقدار باشد")]
