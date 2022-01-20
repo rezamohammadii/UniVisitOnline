@@ -12,6 +12,10 @@ namespace VisitOnline.Services
         List<SickviewModels> GetListSick();
         List<DoctorViewModel> GetDoctorsList();
         void ActiveAccDoc(int id);
+        void InsertTiket(TiketModel model);
+
+        List<Tiket> ListTike(string username);
+        List<Tiket> AllListTikets();
         //#region For Permission
 
         //void InsertPermission(Permission permission);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using VisitOnline.Database;
@@ -12,6 +13,7 @@ namespace VisitOnline.Services
     public class AdminService : IAdmin
     {
         private DatabaseContext context;
+        private PersianCalendar pc = new PersianCalendar();
         public AdminService(DatabaseContext _context)
         {
             context = _context;
@@ -22,6 +24,12 @@ namespace VisitOnline.Services
             Doctor doctor = context.Doctors.Include(i=>i.User).Where(d => d.DoctorId == id).FirstOrDefault();
             doctor.User.Activate = "enable";
             context.SaveChanges();
+        }
+
+        public List<Tiket> AllListTikets()
+        {
+            List<Tiket> tikets = context.Tikets.ToList();
+            return tikets;
         }
 
         public List<DoctorViewModel> GetDoctorsList()
@@ -38,6 +46,37 @@ namespace VisitOnline.Services
             sickviews = context.Sick.Include(i => i.User).Select(x => new SickviewModels { Address = x.Address, Age = x.Age, City = x.City, Mobile = x.User.Mobile, NameFamily = x.User.NameFamily, province = x.province }).ToList();
 
             return sickviews;
+        }
+
+        public void InsertTiket(TiketModel model)
+        {
+            Tiket tiket = new Tiket();
+            tiket.AnswerBody = model.AnswerBody;
+            tiket.Body = model.Body;
+            tiket.IsRead = false;
+            tiket.NumberTiket = int.Parse(model.NumberTiket);
+            tiket.SendDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") +
+                             "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            tiket.Sender = model.Sender;
+            tiket.Title = model.Title;
+
+            context.Tikets.Add(tiket);
+            context.SaveChanges();
+
+        }
+
+        public List<Tiket> ListTike(string username)
+        {
+            bool checkRecord = context.Tikets.Where(x => x.Sender == null).Any();
+            List<Tiket> tiket = new List<Tiket>();
+            if (checkRecord)
+            {
+                 tiket = context.Tikets.Where(u => u.Sender == username).ToList();
+                
+            }
+           
+            return tiket;
+
         }
     }
 }

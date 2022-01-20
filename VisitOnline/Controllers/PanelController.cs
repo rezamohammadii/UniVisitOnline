@@ -93,8 +93,7 @@ namespace VisitOnline.Controllers
             {
 
                 string currentuser = User.Identity.Name;
-                user.UpdateDoctor
-                    (models , currentuser);
+                user.UpdateDoctor (models , currentuser);
 
                 if (models.File != null)
                 {

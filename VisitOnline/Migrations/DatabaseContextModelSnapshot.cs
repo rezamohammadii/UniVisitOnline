@@ -172,6 +172,42 @@ namespace VisitOnline.Migrations
                     b.ToTable("Takhasos");
                 });
 
+            modelBuilder.Entity("VisitOnline.Database.Tabels.Tiket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AnswerBody")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnswerDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("NumberTiket")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SendDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tikets");
+                });
+
             modelBuilder.Entity("VisitOnline.Database.Tabels.Users", b =>
                 {
                     b.Property<int>("Id")
