@@ -1,0 +1,213 @@
+﻿@model IEnumerable<VisitOnline.Database.Tabels.Tiket>
+@inject VisitOnline.Services.PanelLayoutScope scope
+@{
+    ViewData["Title"] = "Tiket";
+    Layout = "~/Views/Shared/_PanelDoctorLayout.cshtml";
+    string randomCount = scope.RandomCodeNoskhe();
+}
+
+<div class="col-xl-9 col-lg-8 col-md-7 p-2">
+
+    <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
+        <div class="col-sm-12 p-2">
+            <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
+                مدیریت تیکت ها
+
+                <a href="" class="btn btn-dark" id="AddTiket">
+                    افزودن تیکت
+                </a>
+            </p>
+            <hr class="my-2">
+        </div>
+
+        <div class="py-3">
+            <div class="col-xxl-11 m-auto p-1">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+
+                                <th class="text-center" scope="col">
+                                    عنوان
+                                </th>
+                                <th class="text-center" scope="col">
+                                   متن پیام
+                                </th>
+                                <th class="text-center" scope="col">
+                                   تاریخ ارسال
+                                </th>
+                                <th class="text-center" scope="col">
+                                    پاسخ مدیر
+                                </th>
+                                <th class="text-center" scope="col">
+                                    تاریخ پاسخ 
+                                </th>
+
+                                <th class="text-center" scope="col">
+                                    وضعیت
+                                </th>
+                                <th class="text-center" scope="col">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td class="text-center text-secondary">
+                                        @item.Title
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        @item.Body
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.SendDate
+                                        </span>
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.AnswerBody
+                                        </span>
+                                    </td>
+                                    <td class="text-center text-secondary">
+                                        <span>
+                                            @item.AnswerDate
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+
+                                        @if (item.IsRead)
+                                        {
+                                            <span class="badge bg-success">
+                                                پاسخ داده شد
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning">
+                                                در انتظار پاسخ
+                                            </span>
+                                        }
+
+
+                                    </td>
+                                    <td class="text-center">
+                                        @*<a href="" class="btn btn-sm btn-outline-info" onclick="GetRequsetData(@item.NumberNoskhe)">
+
+                        <i class="far fa-eye"></i>
+
+                    </a>*@
+                                        <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش" onclick="">
+
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <a href="" class="btn btn-sm btn-outline-danger" title="حذف" onclick="">
+                                            <i class="far fa-trash-alt"></i>
+
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content shadow rounded-custom-3">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnClose"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1" style="color:#000 !important">
+                            شماره تیکت
+                        </p>
+                        <p class="h6 text-secondary my-1" id="numTik"> @randomCount</p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1" style="color:#000 !important">
+                            عنوان تیکت
+                        </p>
+
+                        <input type="text" class="form-control rounded-custom-2 text-start" id="title" value="" />
+                    </div>
+                </div>
+             
+
+                <div class="col-lg-12 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1" style="color:#000 !important">
+                            متن پیام
+                        </p>
+                        <textarea class="form-control" id="input22" rows="3"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="col-12 p-2">
+                    <a href="" class="btn btn-success rounded-custom-2 w-100" onclick="AddTiket()">
+                        ثبت درخواست
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        $("#btnClose").click(function () {
+            $("#alertModal").modal("hide")
+        })
+        $("#AddTiket").click(function () {
+            event.preventDefault();
+            $("#alertModal").modal("show");
+        })
+        
+        function AddTiket() {
+            event.preventDefault();
+            
+            var tit = $("#title").val();
+            var body = $("#input22").val();
+            var numberTi = $("#numTik").text();
+            var data = {
+                "Title": tit, "Body": body, "NumberTiket": numberTi
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/AddTiket",
+                data: data
+            }).done(function (res) {
+                if (res) {
+                    alert("پیام شما با موفقیت ارسال شد");
+                    $("#alertModal").modal("hide")
+                }
+                 else {
+                       alert("پیام شما با موفقیت ارسال نشد");
+                }
+            })
+        }
+    </script>
+
+}
+
