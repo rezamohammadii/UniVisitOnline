@@ -109,6 +109,7 @@ namespace VisitOnline.Controllers
             
         }
 
+<<<<<<< HEAD
         public bool DeleteSick(int id)
         {
             if (id != 0)
@@ -125,5 +126,8 @@ namespace VisitOnline.Controllers
             }
            
         }
+=======
+     
+>>>>>>> ade96a1a290fe540836e263ffc08530db2a1f376
     }
 }

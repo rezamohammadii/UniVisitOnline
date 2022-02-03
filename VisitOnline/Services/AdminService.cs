@@ -69,7 +69,11 @@ namespace VisitOnline.Services
         {
             bool checkRecord = context.Tikets.Where(x => x.Sender == null).Any();
             List<Tiket> tiket = new List<Tiket>();
+<<<<<<< HEAD
             if (!checkRecord)
+=======
+            if (checkRecord)
+>>>>>>> ade96a1a290fe540836e263ffc08530db2a1f376
             {
                  tiket = context.Tikets.Where(u => u.Sender == username).ToList();
                 
