@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<VisitOnline.Models.DoctorViewModel>
 @{
-    string format = ".png";
+   
+    string format = ".jpg";
 }
 @{
     ViewData["Title"] = "ListDoctors";
@@ -83,9 +84,9 @@
                                                 <i class="far fa-eye"></i>
 
                                             </a>*@
-                                        <a href="" class="btn btn-sm btn-outline-success" title="مشاهده و ویرایش" onclick="getrequsetdata(@item.DoctorId)">
-                                            @item.DoctorId
-                                            <i class="far fa-eye"></i>
+                                        <a href="" class="btn btn-sm btn-outline-success" title="تایید اکانت" onclick="getrequsetdata(@item.DoctorId)">
+                                           
+                                            <i class="fa fa-check"></i>
                                         </a>
                                         <a href="" class="btn btn-sm btn-outline-danger" title="حذف" @*onclick="GetRequsetDelete(@item.NumberNoskhe)"*@>
                                             <i class="far fa-trash-alt"></i>
@@ -114,7 +115,9 @@
             url: "/Admin/ConfirmActive/" + id,
             data: {}
         }).done(function (res) {
-
+            if (res) {
+                alert("اکانت با موفقیت فعال شد");
+            }
         })
     }
 </script>

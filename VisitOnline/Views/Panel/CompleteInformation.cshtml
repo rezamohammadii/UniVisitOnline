@@ -8,10 +8,14 @@
  
     <div class="col-xl-9 col-lg-8 col-md-7 p-2">
         <div class="card border-0 rounded-custom-2 shadow-sm p-3 h-100">
-            <div class="alert alert-success" id="success-alert">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong>Success! </strong> Product have added to your wishlist.
-            </div>
+            @if (ViewBag.ComOk)
+            {
+                <div class="alert alert-success" id="success-alert">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    اطلاعات شما با موفقیت ارسال شد
+                </div>
+            }
+
             <div class="col-sm-12 p-2">
                 <p class="h2 ismb text-b d-flex align-items-center justify-content-between">
                     تکمیل اطلاعات
@@ -70,7 +74,7 @@
                                     <label for="input2" class="form-label" asp-for="Mobile">
                                         شماره همراه
                                     </label>
-                                    <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" value="@Model.Mobile" disabled>
+                                    <input type="tel" asp-for="Mobile" class="form-control rounded-custom-2 text-start" id="input12" placeholder="@User.Identity.Name" value="@Model.Mobile" disabled>
                                     <span asp-validation-for="Mobile" class="text-danger"></span>
                                 </div>
                             </div>
@@ -153,9 +157,9 @@
 {
         <script>
             $(document).ready(function () {
-\
+
                    $("#success-alert").hide();
-                   alert("hi");
+                   
                    $("#myWish").click(function showAlert() {
                         $("#success-alert").fadeTo(6000, 500).slideUp(500, function() {
                             $("#success-alert").slideUp(500);

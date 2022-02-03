@@ -47,6 +47,7 @@
                                 <th class="text-center" scope="col">
                                     شماره ویزیت
                                 </th>
+
                                 <th class="text-center" scope="col">
                                     تاریخ درخواست
                                 </th>
@@ -156,6 +157,16 @@
                 <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
                     <div class="col-10 align-self-center p-1">
                         <p class="h5 text-dark my-1" style="color:#08ab6f !important">
+                           توضیحات بیمار
+                        </p>
+                        <p class="h6 text-secondary my-1" id="desqc">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
+                    <div class="col-10 align-self-center p-1">
+                        <p class="h5 text-dark my-1" style="color:#08ab6f !important">
                             نام بیمار
                         </p>
                         <p class="h6 text-secondary my-1" id="nP">
@@ -183,13 +194,13 @@
                 </div>
 
                 @*<div class="col-lg-6 col-md-12 col-sm-6 col-12 p-1">
-                        <div class="col-10 align-self-center p-1">
-                            <p class="h5 text-dark my-1">
-                                تصویر نسخه
-                            </p>
-                            <input type="file" name="files"  class="form-control rounded-custom-2 text-start" id="input12"  multiple/>
-                        </div>
-                    </div>*@
+            <div class="col-10 align-self-center p-1">
+                <p class="h5 text-dark my-1">
+                    تصویر نسخه
+                </p>
+                <input type="file" name="files"  class="form-control rounded-custom-2 text-start" id="input12"  multiple/>
+            </div>
+        </div>*@
 
                 <div class="col-12 p-2">
                     <a href="" class="btn btn-success rounded-custom-2 w-100" onclick="PostChange()">
@@ -217,6 +228,7 @@
                 $("#alertModal").modal("show");
                 $("#jNV").text(res.numberNoskhe);
                 $("#tit").text(res.title);
+                $("#desqc").text(res.description);
                 $("#nP").text(res.nameSick);
                 $("#dR").text(res.dateRequest);
 

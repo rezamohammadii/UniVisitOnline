@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using VisitOnline.Services
+@inject PanelLayoutScope scope
+@{
+    string user = scope.GetUserNameFamily(User.Identity.Name);
+}
+<!DOCTYPE html>
 
 
 <html lang="en">
@@ -13,7 +18,7 @@
 
 </head>
 <body dir="rtl" class="bg-light">
-  
+
     <div class="panel">
         @if (ViewBag.Status == "disable")
         {
@@ -130,7 +135,7 @@
                                             نام و نام خانوادگی
                                         </p>
                                         <p class="h6 text-secondary my-1">
-                                            پزشک
+                                             پزشک : @user
                                         </p>
                                     </div>
                                 </div>
@@ -165,7 +170,7 @@
                                     <li class="list-unstyled py-1">
                                         <a href="/Admin/Tiket" class="btn btn-side-link rounded-0 position-relative">
                                             <i class="bi bi-chat-left-text me-2 d-flex h5 my-0"></i>
-                                           تیکت ها
+                                            تیکت ها
                                             <i class="bi bi-arrow-left-short d-flex position-absolute end-0 top-0 bottom-0 align-items-center px-2 h4 my-0"></i>
                                         </a>
                                     </li>

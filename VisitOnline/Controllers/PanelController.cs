@@ -66,7 +66,7 @@ namespace VisitOnline.Controllers
 
         public IActionResult CompleteInformation()
         {
-            
+            ViewBag.ComOk = false;
             string currentuser = User.Identity.Name;
             Doctor users = user.GetDoctor(currentuser);
 

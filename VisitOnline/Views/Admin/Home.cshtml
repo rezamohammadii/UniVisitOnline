@@ -1,12 +1,60 @@
-﻿
+﻿@model VisitOnline.Models.CountDetail
 @{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_AdminPanel.cshtml";
 }
-    <div class="col-xl-9 col-lg-8 col-md-7 p-2">
-        <div class="text-center">
-            <h1 class="display-4">Welcome</h1>
-            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="col-xl-9 col-lg-8 col-md-7 p-2" style="display:flex;margin-top:10%">
+        <div class="col-sm-4 p-2">
+            <div class="card border-0 rounded-custom-2 shadow-sm p-3">
+                <div class="row w-100 m-0">
+                    <div class="col-md-3 col-sm-2 col-2 align-self-center p-1">
+                        <img src="~/img/person.png" alt="" class="w-100 rounded-circle">
+                    </div>
+                    <div class="col-md-9 col-sm-10 col-10 align-self-center p-1">
+                        <p class="h5 ismb my-1">
+                            تعداد کل بیماران
+                        </p>
+                        <p class="h6 text-secondary my-1">
+                            @Model.CountSick
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 p-2">
+            <div class="card border-0 rounded-custom-2 shadow-sm p-3">
+                <div class="row w-100 m-0">
+                    <div class="col-md-3 col-sm-2 col-2 align-self-center p-1">
+                        <img src="~/img/doctor.png" alt="" class="w-100 rounded-circle">
+                    </div>
+                    <div class="col-md-9 col-sm-10 col-10 align-self-center p-1">
+                        <p class="h5 ismb my-1">
+                              تعداد کل پزشکان 
+                        </p>
+                        <p class="h6 text-secondary my-1">
+                            @Model.CountDoctor
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 p-2">
+            <div class="card border-0 rounded-custom-2 shadow-sm p-3">
+                <div class="row w-100 m-0">
+                    <div class="col-md-3 col-sm-2 col-2 align-self-center p-1">
+                        <img src="~/img/plus-sign.png" alt="" class="w-100 rounded-circle">
+                    </div>
+                    <div class="col-md-9 col-sm-10 col-10 align-self-center p-1">
+                        <p class="h5 ismb my-1">
+                           تعداد کل تیکت ها 
+                        </p>
+                        <p class="h6 text-secondary my-1">
+                            @Model.CountTiket
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-     </div>
+
+    </div>

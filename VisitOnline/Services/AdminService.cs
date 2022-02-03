@@ -43,7 +43,7 @@ namespace VisitOnline.Services
         public List<SickviewModels> GetListSick()
         {
             List<SickviewModels> sickviews = new List<SickviewModels>();
-            sickviews = context.Sick.Include(i => i.User).Select(x => new SickviewModels { Address = x.Address, Age = x.Age, City = x.City, Mobile = x.User.Mobile, NameFamily = x.User.NameFamily, province = x.province }).ToList();
+            sickviews = context.Sick.Include(i => i.User).Select(x => new SickviewModels { Address = x.Address, Age = x.Age, City = x.City, Mobile = x.User.Mobile, NameFamily = x.User.NameFamily, province = x.province  , Id = x.SickId}).ToList();
 
             return sickviews;
         }
@@ -69,7 +69,7 @@ namespace VisitOnline.Services
         {
             bool checkRecord = context.Tikets.Where(x => x.Sender == null).Any();
             List<Tiket> tiket = new List<Tiket>();
-            if (checkRecord)
+            if (!checkRecord)
             {
                  tiket = context.Tikets.Where(u => u.Sender == username).ToList();
                 

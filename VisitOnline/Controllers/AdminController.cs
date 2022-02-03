@@ -27,7 +27,11 @@ namespace VisitOnline.Controllers
         // GET: Admin
         public IActionResult Home()
         {
-            return View();
+            CountDetail model = new CountDetail();
+            model.CountDoctor = context.Doctors.Count();
+            model.CountSick = context.Sick.Count();
+            model.CountTiket = context.Tikets.Count();
+            return View(model);
         }
 
 
@@ -105,6 +109,21 @@ namespace VisitOnline.Controllers
             
         }
 
-     
+        public bool DeleteSick(int id)
+        {
+            if (id != 0)
+            {
+                Sick sick = context.Sick.Where(x => x.SickId == id).FirstOrDefault();
+                context.Sick.Remove(sick);
+                context.SaveChanges();
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+           
+        }
     }
 }

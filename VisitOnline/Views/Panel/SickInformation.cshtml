@@ -21,7 +21,7 @@
                             <div class="pro-photo">
                                 <div class="small-12 medium-2 large-2 columns max-content mx-auto position-relative">
                                     <div class="circle mx-auto">
-                                        <img class="profile-pic rounded-circle" src="~/img/download.jpg">
+                                        <img class="profile-pic rounded-circle" src="~/img/person.png">
                                     </div>
                                     <div class="p-image">
                                         <i class="bi bi-camera upload-button"></i>
@@ -79,9 +79,9 @@
 
                             <div class="">
                                 <label for="input22" class="form-label" asp-for="Region">
-                                   منطقه
+                                   کدملی
                                 </label>
-                                <input class="form-control" asp-for="Region" id="input22" rows="3" value="@Model.Region" />
+                                <input type="number" class="form-control" asp-for="Region" id="input22" rows="3" value="@Model.Region" />
                                 <span asp-validation-for="Region" class="text-danger"></span>
                             </div>
                         </div>

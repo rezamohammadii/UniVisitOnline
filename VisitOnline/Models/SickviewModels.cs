@@ -7,6 +7,7 @@ namespace VisitOnline.Models
 {
     public class SickviewModels
     {
+        public int Id { get; set; }
         public string province { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
